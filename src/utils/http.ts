@@ -1,5 +1,6 @@
 import { message } from 'antd'
-import Axios, { InternalAxiosRequestConfig } from 'axios'
+import Axios from 'axios'
+import type { InternalAxiosRequestConfig } from 'axios'
 
 import { storage } from '@/utils'
 
