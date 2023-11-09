@@ -16,7 +16,6 @@ const Login = () => {
   const onFinish = async (values: LoginData) => {
     const result = await userLoginApi(values)
     setUserInfo(result)
-    console.log('Success:', result)
     navigate('/', { replace: true })
   }
 

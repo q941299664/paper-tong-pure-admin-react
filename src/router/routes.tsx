@@ -14,8 +14,6 @@ const authRouteModules: Record<
   }
 > = import.meta.glob('./dynamic/*.tsx', { eager: true })
 
-console.log(authRouteModules)
-
 Object.keys(authRouteModules).forEach(item => {
   const module = authRouteModules[item].default.map(route => {
     route.meta!.auth = true
