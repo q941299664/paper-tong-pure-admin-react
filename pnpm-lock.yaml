@@ -26,6 +26,9 @@ dependencies:
   classnames:
     specifier: ^2.3.2
     version: 2.3.2
+  immer:
+    specifier: ^10.0.3
+    version: 10.0.3
   lodash-es:
     specifier: ^4.17.21
     version: 4.17.21
@@ -38,9 +41,12 @@ dependencies:
   react-router-dom:
     specifier: ^6.18.0
     version: 6.18.0(react-dom@18.2.0)(react@18.2.0)
+  use-immer:
+    specifier: ^0.9.0
+    version: 0.9.0(immer@10.0.3)(react@18.2.0)
   zustand:
     specifier: ^4.4.6
-    version: 4.4.6(@types/react@18.2.36)(react@18.2.0)
+    version: 4.4.6(@types/react@18.2.36)(immer@10.0.3)(react@18.2.0)
 
 devDependencies:
   '@types/lodash-es':
@@ -2303,6 +2309,10 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
+  /immer@10.0.3:
+    resolution: {integrity: sha512-pwupu3eWfouuaowscykeckFmVTpqbzW+rXFCX8rQLkZzM9ftBmU/++Ra+o+L27mz03zJTlyV4UUr+fdKNffo4A==}
+    dev: false
+
   /immutable@4.3.4:
     resolution: {integrity: sha512-fsXeu4J4i6WNWSikpI88v/PcVflZz+6kMhUfIwc5SY+poQRPnaf5V7qds6SUyUN3cVxEzuCab7QIoLOQ+DQ1wA==}
     dev: true
@@ -4046,6 +4056,16 @@ packages:
       punycode: 2.3.1
     dev: true
 
+  /use-immer@0.9.0(immer@10.0.3)(react@18.2.0):
+    resolution: {integrity: sha512-/L+enLi0nvuZ6j4WlyK0US9/ECUtV5v9RUbtxnn5+WbtaXYUaOBoKHDNL9I5AETdurQ4rIFIj/s+Z5X80ATyKw==}
+    peerDependencies:
+      immer: '>=2.0.0'
+      react: ^16.8.0 || ^17.0.1 || ^18.0.0
+    dependencies:
+      immer: 10.0.3
+      react: 18.2.0
+    dev: false
+
   /use-sync-external-store@1.2.0(react@18.2.0):
     resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
     peerDependencies:
@@ -4146,7 +4166,7 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zustand@4.4.6(@types/react@18.2.36)(react@18.2.0):
+  /zustand@4.4.6(@types/react@18.2.36)(immer@10.0.3)(react@18.2.0):
     resolution: {integrity: sha512-Rb16eW55gqL4W2XZpJh0fnrATxYEG3Apl2gfHTyDSE965x/zxslTikpNch0JgNjJA9zK6gEFW8Fl6d1rTZaqgg==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
@@ -4162,6 +4182,7 @@ packages:
         optional: true
     dependencies:
       '@types/react': 18.2.36
+      immer: 10.0.3
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
