@@ -15,10 +15,11 @@ export const useUserInfoStore = create<userInfoState>()(
       persist(
         set => ({
           userInfo: null,
-          setUserInfo: info =>
+          setUserInfo: (info: UserInfo) => {
             set(state => {
               state.userInfo = info
             })
+          }
         }),
         { name: 'userInfo' }
       ),
