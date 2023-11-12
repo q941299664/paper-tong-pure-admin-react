@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { devtools, persist } from 'zustand/middleware'
 
 import type { UserInfo } from '@/types/user'
 
@@ -9,11 +9,16 @@ interface userInfoState {
 }
 
 export const useUserInfoStore = create<userInfoState>()(
-  persist(
-    set => ({
-      userInfo: null,
-      setUserInfo: info => set(() => ({ userInfo: info }))
-    }),
+  devtools(
+    persist(
+      set => ({
+        userInfo: null,
+        setUserInfo: info => set(() => ({ userInfo: info }))
+      }),
+      {
+        name: 'userInfo'
+      }
+    ),
     {
       name: 'userInfo'
     }
