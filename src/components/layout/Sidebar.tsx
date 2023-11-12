@@ -1,17 +1,22 @@
-import { Layout, Menu } from 'antd'
+import { Menu } from 'antd'
 import type { MenuProps } from 'antd'
 import { useEffect, useState } from 'react'
+import type { CSSProperties } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { authRoutes } from '@/router/routes'
 import { getOpenKeys } from '@/utils'
 
-const { Sider } = Layout
+import { SIDEBAR_WIDTH } from './constants'
 
-function SideBar() {
+function Sidebar() {
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const [openKeys, setOpenKeys] = useState<string[]>(getOpenKeys(pathname))
+
+  const sideBarStyle: CSSProperties = {
+    width: SIDEBAR_WIDTH
+  }
 
   useEffect(() => {
     setOpenKeys(getOpenKeys(pathname))
@@ -42,18 +47,20 @@ function SideBar() {
   }
 
   return (
-    <Sider>
+    <div
+      style={sideBarStyle}
+      className="fixed inset-y-0 z-10 flex flex-col bg-white border-r border-gray-200 shadow-md cursor-pointer select-none"
+    >
       <Menu
         mode="inline"
         items={items}
         selectedKeys={[pathname]}
         openKeys={openKeys}
-        style={{ height: '100%' }}
         onClick={onClick}
         onOpenChange={onOpenChange}
       ></Menu>
-    </Sider>
+    </div>
   )
 }
 
-export default SideBar
+export default Sidebar

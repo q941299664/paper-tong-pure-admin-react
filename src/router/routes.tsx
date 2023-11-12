@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom'
 
-import NotFound from '@/pages/NotFound.tsx'
-import Login from '@/pages/user/login/Login.tsx'
+import NotFound from '@/pages/NotFound'
+import Login from '@/pages/user/login/Login'
 import type { RouteObject } from '@/types/router'
 import { normalizeRoute } from '@/utils'
 

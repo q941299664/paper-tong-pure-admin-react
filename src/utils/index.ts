@@ -1,3 +1,3 @@
-export * from './http.ts'
-export * from './route.ts'
+export * from './http'
+export * from './route'
 export * from './storage'
