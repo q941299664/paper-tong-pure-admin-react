@@ -10,7 +10,7 @@ import type { LoginData } from '@/types/user'
 import './Login.scss'
 
 const Login = () => {
-  const { setUserInfo } = useUserInfoStore()
+  const setUserInfo = useUserInfoStore(state => state.setUserInfo)
   const navigate = useNavigate()
 
   const onFinish = async (values: LoginData) => {
