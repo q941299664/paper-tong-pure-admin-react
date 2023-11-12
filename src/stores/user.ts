@@ -10,21 +10,19 @@ interface userInfoState {
 }
 
 export const useUserInfoStore = create<userInfoState>()(
-  devtools(
-    persist(
-      immer(set => ({
-        userInfo: null,
-        setUserInfo: info =>
-          set(state => {
-            state.userInfo = info
-          })
-      })),
-      {
-        name: 'userInfo'
-      }
-    ),
-    {
-      name: 'userInfo'
-    }
+  immer(
+    devtools(
+      persist(
+        set => ({
+          userInfo: null,
+          setUserInfo: info =>
+            set(state => {
+              state.userInfo = info
+            })
+        }),
+        { name: 'userInfo' }
+      ),
+      { name: 'userInfo' }
+    )
   )
 )
