@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { devtools, persist } from 'zustand/middleware'
+import { persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 
 import type { UserInfo } from '@/types/user'
@@ -10,20 +10,15 @@ interface userInfoState {
 }
 
 export const useUserInfoStore = create<userInfoState>()(
-  immer(
-    devtools(
-      persist(
-        set => ({
-          userInfo: null,
-          setUserInfo: (info: UserInfo) => {
-            set(state => {
-              state.userInfo = info
-            })
-          }
-        }),
-        { name: 'userInfo' }
-      ),
-      { name: 'userInfo' }
-    )
+  persist(
+    immer(set => ({
+      userInfo: null,
+      setUserInfo: (info: UserInfo) => {
+        set(state => {
+          state.userInfo = info
+        })
+      }
+    })),
+    { name: 'userInfo' }
   )
 )
