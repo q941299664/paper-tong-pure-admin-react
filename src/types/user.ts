@@ -4,7 +4,7 @@ export interface LoginData {
 }
 
 export interface UserInfo {
-  id: number
+  id: string
   email: string
   role: string
   token: string

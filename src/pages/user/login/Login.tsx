@@ -4,13 +4,12 @@ import { useNavigate } from 'react-router-dom'
 
 import { userLoginApi } from '@/api/user'
 import Wave from '@/components/login/wave/Wave'
-import { useUserInfoStore } from '@/stores'
+import { setUserInfo } from '@/stores'
 import type { LoginData } from '@/types/user'
 
 import './Login.scss'
 
 const Login = () => {
-  const setUserInfo = useUserInfoStore(state => state.setUserInfo)
   const navigate = useNavigate()
 
   const onFinish = async (values: LoginData) => {
