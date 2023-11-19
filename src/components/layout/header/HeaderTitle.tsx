@@ -7,7 +7,6 @@ import { searchRoute } from '@/utils'
 function HeaderTitle() {
   const { pathname } = useLocation()
   const isHomePage = ['home', 'dashboard-home'].includes(pathname)
-  console.log(isHomePage)
   const canBack = !/.+\/list$/.test(pathname)
   const currentRoute = searchRoute(pathname, authRoutes)
   return (
