@@ -1,4 +1,4 @@
-import { DashboardOutlined } from '@ant-design/icons'
+import { DashboardOutlined, UploadOutlined } from '@ant-design/icons'
 
 import LayoutApp from '@/layout/LayoutApp'
 import type { RouteObject } from '@/types/router'
@@ -18,14 +18,16 @@ const DashboardRouter: RouteObject[] = [
         path: 'index',
         element: <div>Dashboard</div>,
         meta: {
-          title: 'Dashboard'
+          title: 'Dashboard',
+          icon: <DashboardOutlined />
         }
       },
       {
         path: '/dashboard/upload',
         element: <div>Upload</div>,
         meta: {
-          title: 'Upload'
+          title: 'Upload',
+          icon: <UploadOutlined />
         }
       }
     ]

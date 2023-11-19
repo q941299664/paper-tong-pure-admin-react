@@ -1,6 +1,6 @@
 import Body from '@/components/layout/Body'
-import Header from '@/components/layout/Header'
 import Sidebar from '@/components/layout/Sidebar'
+import Header from '@/components/layout/header/Header'
 
 function LayoutApp() {
   return (

@@ -4,7 +4,10 @@ import type { CSSProperties } from 'react'
 
 import { useUserInfoStore } from '@/stores'
 
-import { HEADER_HEIGHT, SIDEBAR_WIDTH } from './constants'
+import { HEADER_HEIGHT, SIDEBAR_WIDTH } from '../constants'
+
+import HeaderGroup from './HeaderGroup'
+import HeaderTitle from './HeaderTitle'
 
 function Header() {
   const scroll = useScroll(document)
@@ -26,7 +29,12 @@ function Header() {
 
   return (
     <div className={classNamesMain} style={headerStyle}>
-      <div className="text-right">{userInfo?.email}</div>
+      <HeaderGroup>
+        <HeaderTitle />
+      </HeaderGroup>
+      <HeaderGroup>
+        <div className="text-right">{userInfo?.email}</div>
+      </HeaderGroup>
     </div>
   )
 }

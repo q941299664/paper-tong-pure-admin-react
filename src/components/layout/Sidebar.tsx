@@ -32,6 +32,7 @@ function Sidebar() {
       children: route.children?.map(child => {
         return {
           key: child.path,
+          icon: child.meta?.icon,
           label: child.meta?.title
         }
       })
