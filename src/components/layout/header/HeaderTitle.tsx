@@ -1,6 +1,6 @@
-import { LeftOutlined } from '@ant-design/icons'
 import { useLocation, useNavigate } from 'react-router-dom'
 
+import Icon from '@/components/icon'
 import { authRoutes } from '@/router/routes'
 import { searchRoute } from '@/utils'
 
@@ -23,7 +23,7 @@ function HeaderTitle() {
       <div className="h-[32px] flex justify-center items-center">
         {canBack ? (
           <span className="self-stretch w-[32px] text-xl rounded select-none cursor-pointer hover:bg-gray-100 hover:text-gray-900 flex items-center justify-center">
-            <LeftOutlined onClick={() => back()} />
+            <Icon icon="icon-park-outline:left" onClick={() => back()} />
           </span>
         ) : (
           <span className="self-stretch w-[32px] text-xl rounded select-none cursor-pointer flex items-center justify-center">

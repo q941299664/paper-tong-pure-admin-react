@@ -9,7 +9,7 @@ import { HEADER_HEIGHT, SIDEBAR_WIDTH } from '../constants'
 import HeaderGroup from './HeaderGroup'
 import HeaderTitle from './HeaderTitle'
 
-function Header() {
+export default function Index() {
   const scroll = useScroll(document)
 
   const classNamesMain = classnames(
@@ -38,5 +38,3 @@ function Header() {
     </div>
   )
 }
-
-export default Header

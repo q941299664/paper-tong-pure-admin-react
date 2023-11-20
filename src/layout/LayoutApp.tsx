@@ -1,11 +1,11 @@
 import Body from '@/components/layout/Body'
 import Sidebar from '@/components/layout/Sidebar'
-import Header from '@/components/layout/header/Header'
+import Index from '@/components/layout/header'
 
 function LayoutApp() {
   return (
     <>
-      <Header />
+      <Index />
       <Sidebar />
       <Body />
     </>
