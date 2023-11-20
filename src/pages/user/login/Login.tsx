@@ -3,6 +3,7 @@ import { Button, Form, Input } from 'antd'
 import { useNavigate } from 'react-router-dom'
 
 import { userLoginApi } from '@/api/user'
+
 import Wave from '@/components/login/wave/Wave'
 import { setUserInfo } from '@/stores'
 import type { LoginData } from '@/types/user'
@@ -43,7 +44,10 @@ const Login = () => {
                   { type: 'email', message: 'Please enter the correct Email' }
                 ]}
               >
-                <Input placeholder="Username" prefix={<UserOutlined />} />
+                <Input
+                  placeholder="Username"
+                  prefix={<UserOutlined style={{ color: '#D9D9D9' }} />}
+                />
               </Form.Item>
               <Form.Item
                 name="password"
@@ -55,7 +59,10 @@ const Login = () => {
                   }
                 ]}
               >
-                <Input.Password placeholder="Password" prefix={<LockOutlined />} />
+                <Input.Password
+                  placeholder="Password"
+                  prefix={<LockOutlined style={{ color: '#D9D9D9' }} />}
+                />
               </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit" size="large" block>
