@@ -1,0 +1,17 @@
+.icon {
+  display: inline-block;
+  line-height: 0;
+  height: 1em;
+  width: 1em;
+  color: inherit;
+  font-style: normal;
+  text-align: center;
+  text-transform: none;
+  vertical-align: -.125em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  svg {
+    display: inline-block;
+    vertical-align: baseline;
+  }
+}
