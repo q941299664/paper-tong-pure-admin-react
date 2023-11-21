@@ -2,15 +2,15 @@ import { Navigate } from 'react-router-dom'
 
 import NotFound from '@/pages/NotFound'
 import Login from '@/pages/user/login/Login'
-import type { RouteObject } from '@/types/router'
+import type { Route } from '@/types/router'
 import { normalizeRoute } from '@/utils'
 
-const dynamicRoutes: RouteObject[] = []
+const dynamicRoutes: Route[] = []
 
 const authRouteModules: Record<
   string,
   {
-    [key: string]: RouteObject[]
+    [key: string]: Route[]
   }
 > = import.meta.glob('./dynamic/*.tsx', { eager: true })
 

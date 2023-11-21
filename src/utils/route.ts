@@ -1,9 +1,9 @@
 import { resolvePath } from 'react-router-dom'
 
-import type { RouteObject } from '@/types/router'
+import type { Route } from '@/types/router'
 
-export function searchRoute(pathname: string, routes: RouteObject[]): RouteObject {
-  let result: RouteObject = {}
+export function searchRoute(pathname: string, routes: Route[]): Route {
+  let result: Route = {}
   for (const route of routes) {
     if (route.path === pathname) return route
 
@@ -16,8 +16,8 @@ export function searchRoute(pathname: string, routes: RouteObject[]): RouteObjec
   return result
 }
 
-export function normalizeRoute(routes: RouteObject[], isSort = true): RouteObject[] {
-  const result: RouteObject[] = []
+export function normalizeRoute(routes: Route[], isSort = true): Route[] {
+  const result: Route[] = []
 
   for (const route of routes) {
     if (route.children) {

@@ -1,7 +1,7 @@
 import LayoutApp from '@/layout/LayoutApp'
-import type { RouteObject } from '@/types/router'
+import type { Route } from '@/types/router'
 
-const DashboardRouter: RouteObject[] = [
+const DashboardRoutes: Route[] = [
   {
     path: '/dashboard',
     meta: {
@@ -32,4 +32,4 @@ const DashboardRouter: RouteObject[] = [
   }
 ]
 
-export default DashboardRouter
+export default DashboardRoutes
