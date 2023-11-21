@@ -27,7 +27,7 @@ function HeaderTitle() {
           </span>
         ) : (
           <span className="self-stretch w-[32px] text-xl rounded select-none cursor-pointer flex items-center justify-center">
-            {currentRoute.meta?.icon}
+            {currentRoute.meta?.icon && <Icon icon={currentRoute.meta.icon} />}
           </span>
         )}
         {!!currentRoute.meta?.title && (

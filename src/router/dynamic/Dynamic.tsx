@@ -1,5 +1,3 @@
-import { DashboardOutlined, UploadOutlined } from '@ant-design/icons'
-
 import LayoutApp from '@/layout/LayoutApp'
 import type { RouteObject } from '@/types/router'
 
@@ -9,7 +7,7 @@ const DashboardRouter: RouteObject[] = [
     meta: {
       title: 'Dashboard',
       key: 'dashboard',
-      icon: <DashboardOutlined />,
+      icon: 'icon-park-outline:dashboard',
       index: 1
     },
     element: <LayoutApp />,
@@ -19,7 +17,7 @@ const DashboardRouter: RouteObject[] = [
         element: <div>Dashboard</div>,
         meta: {
           title: 'Dashboard',
-          icon: <DashboardOutlined />
+          icon: 'icon-park-outline:dashboard'
         }
       },
       {
@@ -27,7 +25,7 @@ const DashboardRouter: RouteObject[] = [
         element: <div>Upload</div>,
         meta: {
           title: 'Upload',
-          icon: <UploadOutlined />
+          icon: 'upload'
         }
       }
     ]

@@ -4,7 +4,7 @@ export interface MetaObject {
   auth?: boolean
   title?: string
   key?: string
-  icon?: ReactNode
+  icon?: string
   index?: number
 }
 
