@@ -37,6 +37,7 @@ export default function SearchContent(props: SearchContentProps) {
 
   return (
     <Modal
+      style={{ top: 10 }}
       open={open}
       title="搜索系统功能"
       footer={null}
