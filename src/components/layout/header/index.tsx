@@ -6,8 +6,9 @@ import { useUserInfoStore } from '@/stores'
 
 import { HEADER_HEIGHT, SIDEBAR_WIDTH } from '../constants'
 
-import HeaderGroup from './HeaderGroup'
-import HeaderTitle from './HeaderTitle'
+import Group from './Group'
+import Search from './Search'
+import Title from './Title'
 
 export default function Index() {
   const scroll = useScroll(document)
@@ -29,12 +30,15 @@ export default function Index() {
 
   return (
     <div className={classNamesMain} style={headerStyle}>
-      <HeaderGroup>
-        <HeaderTitle />
-      </HeaderGroup>
-      <HeaderGroup>
+      <Group>
+        <Title />
+      </Group>
+      <Group>
+        <Search />
+      </Group>
+      <Group>
         <div className="text-right">{userInfo?.email}</div>
-      </HeaderGroup>
+      </Group>
     </div>
   )
 }

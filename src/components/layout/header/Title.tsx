@@ -4,7 +4,7 @@ import Icon from '@/components/icon'
 import { authRoutes } from '@/router/routes'
 import { searchRoute } from '@/utils'
 
-function HeaderTitle() {
+function Title() {
   const { pathname } = useLocation()
   const navigate = useNavigate()
 
@@ -38,4 +38,4 @@ function HeaderTitle() {
   )
 }
 
-export default HeaderTitle
+export default Title
