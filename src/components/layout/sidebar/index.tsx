@@ -4,12 +4,13 @@ import { useEffect, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
+import Icon from '@/components/icon'
 import { authRoutes } from '@/router/routes'
 import { getOpenKeys } from '@/utils'
 
-import { SIDEBAR_WIDTH } from './constants'
+import { SIDEBAR_WIDTH } from '../constants'
 
-function Sidebar() {
+export default function Index() {
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const [openKeys, setOpenKeys] = useState<string[]>(getOpenKeys(pathname))
@@ -27,12 +28,20 @@ function Sidebar() {
 
     return {
       key,
-      icon: route.meta?.icon,
+      icon: route.meta?.icon ? (
+        <div>
+          <Icon icon={route.meta.icon} />
+        </div>
+      ) : null,
       label: route.meta?.title,
       children: route.children?.map(child => {
         return {
           key: child.path,
-          icon: child.meta?.icon,
+          icon: child.meta?.icon ? (
+            <div>
+              <Icon icon={child.meta.icon} />
+            </div>
+          ) : null,
           label: child.meta?.title
         }
       })
@@ -63,5 +72,3 @@ function Sidebar() {
     </div>
   )
 }
-
-export default Sidebar

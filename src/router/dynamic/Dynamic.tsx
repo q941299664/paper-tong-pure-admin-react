@@ -25,7 +25,7 @@ const DashboardRouter: RouteObject[] = [
         element: <div>Upload</div>,
         meta: {
           title: 'Upload',
-          icon: 'upload'
+          icon: 'icon-park-outline:upload'
         }
       }
     ]
