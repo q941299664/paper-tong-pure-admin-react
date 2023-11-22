@@ -1,4 +1,5 @@
 export * from './browser'
 export * from './http'
+export * from './overlayscrollbars'
 export * from './route'
 export * from './storage'

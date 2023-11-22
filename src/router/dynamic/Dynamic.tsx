@@ -16,7 +16,7 @@ const DashboardRoutes: Route[] = [
         path: 'index',
         element: <div>Dashboard</div>,
         meta: {
-          title: 'Dashboard',
+          title: 'ChildDashboard',
           icon: 'icon-park-outline:dashboard'
         }
       },

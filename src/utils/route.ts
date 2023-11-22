@@ -1,3 +1,4 @@
+import { flatMap, omit } from 'lodash-es'
 import { resolvePath } from 'react-router-dom'
 
 import type { Route } from '@/types/router'
@@ -14,6 +15,15 @@ export function searchRoute(pathname: string, routes: Route[]): Route {
   }
 
   return result
+}
+
+export function flattenRoute(routes: Route[]): Route[] {
+  return flatMap(routes, route => {
+    if (route.children) {
+      return [omit(route, ['children']), ...flattenRoute(route.children)]
+    }
+    return [route]
+  })
 }
 
 export function normalizeRoute(routes: Route[], isSort = true): Route[] {
