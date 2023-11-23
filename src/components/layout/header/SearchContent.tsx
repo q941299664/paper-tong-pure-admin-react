@@ -79,11 +79,6 @@ export default function SearchContent(props: SearchContentProps) {
     'focus:bg-indigo-500 focus:text-white focus:outline-none focus:ring-2 focus:ring-indigo-200'
   )
 
-  const selectRoute = (route: Route) => {
-    navigate(route.path!)
-    resetAll()
-  }
-
   const resetFocusIndex = () => {
     setFocusIndex(-1)
   }
@@ -93,6 +88,11 @@ export default function SearchContent(props: SearchContentProps) {
     setMenuListFilter([])
     resetFocusIndex()
     setFalse()
+  }
+
+  const selectRoute = (route: Route) => {
+    navigate(route.path!)
+    resetAll()
   }
 
   const handleOpenChange = (open: boolean) => {
