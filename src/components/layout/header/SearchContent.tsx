@@ -3,10 +3,12 @@ import type { InputRef } from 'antd'
 import classnames from 'classnames'
 import 'overlayscrollbars/overlayscrollbars.css'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { ChangeEvent, KeyboardEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import Icon from '@/components/icon'
+import useHotkey from '@/hooks/useHotkey'
 import { authRoutes } from '@/router/routes'
 import type { Route } from '@/types/router'
 import { flattenRoute, scrollbarOptions } from '@/utils'
@@ -18,11 +20,57 @@ export interface SearchContentProps {
 
 export default function SearchContent(props: SearchContentProps) {
   const { open, setFalse } = props
-
+  const navigate = useNavigate()
   const inputRef = useRef<InputRef>(null)
+  const buttonRefs = useRef<HTMLButtonElement[]>([])
+  const [focusIndex, setFocusIndex] = useState(-1)
   const [keyword, setKeyword] = useState('')
   const [menuListFilter, setMenuListFilter] = useState<Route[]>([])
   const flatRoutes = flattenRoute(authRoutes)
+
+  useEffect(() => {
+    if (focusIndex > -1) {
+      buttonRefs.current[focusIndex].focus()
+    }
+  }, [focusIndex])
+
+  useHotkey({
+    hotkey: 'down',
+    callback: () => {
+      if (buttonRefs.current.length > 0) {
+        setFocusIndex(prev => {
+          if (prev < buttonRefs.current.length - 1) {
+            return prev + 1
+          }
+          return 0
+        })
+      }
+    }
+  })
+
+  useHotkey({
+    hotkey: 'up',
+    callback: () => {
+      if (buttonRefs.current.length > 0) {
+        setFocusIndex(prev => {
+          if (prev > 0) {
+            return prev - 1
+          }
+          return buttonRefs.current.length - 1
+        })
+      }
+    }
+  })
+
+  useHotkey({
+    hotkey: 'enter',
+    callback: () => {
+      if (buttonRefs.current.length > 0) {
+        buttonRefs.current[focusIndex].click()
+      }
+    }
+  })
+
   const classNamesForSearchResultItem = classnames(
     'block',
     'px-2 py-1',
@@ -31,11 +79,25 @@ export default function SearchContent(props: SearchContentProps) {
     'focus:bg-indigo-500 focus:text-white focus:outline-none focus:ring-2 focus:ring-indigo-200'
   )
 
+  const selectRoute = (route: Route) => {
+    navigate(route.path!)
+    resetAll()
+  }
+
+  const resetFocusIndex = () => {
+    setFocusIndex(-1)
+  }
+
+  const resetAll = () => {
+    setKeyword('')
+    setMenuListFilter([])
+    resetFocusIndex()
+    setFalse()
+  }
+
   const handleOpenChange = (open: boolean) => {
     if (open) {
-      inputRef.current!.focus({
-        cursor: 'start'
-      })
+      inputRef.current!.focus()
     }
   }
 
@@ -43,13 +105,14 @@ export default function SearchContent(props: SearchContentProps) {
     // 回车或者下
     if (e.key === 'Enter' || e.key === 'ArrowDown') {
       e.preventDefault()
-      // if (menuListFilter.value.length) {
-      //   focusIndex.value = 0
-      // }
+      inputRef.current!.blur()
+      if (menuListFilter.length) {
+        setFocusIndex(0)
+      }
     }
   }
 
-  const handleKeywordChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value)
     if (e.target.value) {
       const filter = flatRoutes.filter(item => {
@@ -59,6 +122,10 @@ export default function SearchContent(props: SearchContentProps) {
     } else {
       setMenuListFilter([])
     }
+  }
+
+  const handleInputFocus = () => {
+    resetFocusIndex()
   }
 
   return (
@@ -76,7 +143,8 @@ export default function SearchContent(props: SearchContentProps) {
           value={keyword}
           placeholder="关键字"
           onKeyDown={handleInputKeydown}
-          onChange={handleKeywordChange}
+          onFocus={handleInputFocus}
+          onChange={handleInputChange}
         />
         <div>
           按
@@ -109,9 +177,14 @@ export default function SearchContent(props: SearchContentProps) {
           menuListFilter.length > 0 ? (
             <OverlayScrollbarsComponent options={scrollbarOptions} defer className="h-64 rounded">
               <section className="p-2 bg-gray-50">
-                {menuListFilter.map(item => {
+                {menuListFilter.map((item, itemIndex) => {
                   return (
-                    <button key={item.path} className={classNamesForSearchResultItem}>
+                    <button
+                      key={item.path}
+                      ref={node => (buttonRefs.current[itemIndex] = node!)}
+                      className={classNamesForSearchResultItem}
+                      onClick={() => selectRoute(item)}
+                    >
                       <div className="text-sm">{item?.meta?.title}</div>
                     </button>
                   )
