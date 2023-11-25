@@ -10,7 +10,7 @@ import Group from './Group'
 import Search from './Search'
 import Title from './Title'
 
-export default function Index() {
+function Index() {
   const scroll = useScroll(document)
 
   const classNamesMain = classnames(
@@ -42,3 +42,5 @@ export default function Index() {
     </div>
   )
 }
+
+export default Index

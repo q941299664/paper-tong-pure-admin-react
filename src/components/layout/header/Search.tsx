@@ -6,7 +6,7 @@ import { isMacOS, isWindows } from '@/utils'
 
 import SearchContent from './SearchContent'
 
-export default function Search() {
+function Search() {
   const [open, { setTrue, setFalse }] = useBoolean(false)
 
   const hotkeyTip = isMacOS ? '⌘ + K' : isWindows ? 'Ctrl + K' : ''
@@ -35,3 +35,5 @@ export default function Search() {
     </>
   )
 }
+
+export default Search

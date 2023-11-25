@@ -18,7 +18,7 @@ export interface SearchContentProps {
   setFalse: () => void
 }
 
-export default function SearchContent(props: SearchContentProps) {
+function SearchContent(props: SearchContentProps) {
   const { open, setFalse } = props
   const navigate = useNavigate()
   const inputRef = useRef<InputRef>(null)
@@ -201,3 +201,5 @@ export default function SearchContent(props: SearchContentProps) {
     </Modal>
   )
 }
+
+export default SearchContent
