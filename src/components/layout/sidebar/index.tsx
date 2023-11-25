@@ -1,12 +1,14 @@
 import { Menu } from 'antd'
 import type { MenuProps } from 'antd'
+import 'overlayscrollbars/overlayscrollbars.css'
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
 import { useEffect, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import Icon from '@/components/icon'
 import { authRoutes } from '@/router/routes'
-import { getOpenKeys } from '@/utils'
+import { getOpenKeys, scrollbarOptions } from '@/utils'
 
 import { SIDEBAR_WIDTH } from '../constants'
 
@@ -61,14 +63,16 @@ export default function Index() {
       style={sideBarStyle}
       className="fixed inset-y-0 z-10 flex flex-col bg-white border-r border-gray-200 shadow-md cursor-pointer select-none"
     >
-      <Menu
-        mode="inline"
-        items={items}
-        selectedKeys={[pathname]}
-        openKeys={openKeys}
-        onClick={onClick}
-        onOpenChange={onOpenChange}
-      ></Menu>
+      <OverlayScrollbarsComponent options={scrollbarOptions} defer className="grow">
+        <Menu
+          mode="inline"
+          items={items}
+          selectedKeys={[pathname]}
+          openKeys={openKeys}
+          onClick={onClick}
+          onOpenChange={onOpenChange}
+        />
+      </OverlayScrollbarsComponent>
     </div>
   )
 }
