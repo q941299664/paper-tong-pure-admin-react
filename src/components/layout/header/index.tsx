@@ -1,6 +1,6 @@
-import { useScroll } from 'ahooks'
 import classnames from 'classnames'
 import type { CSSProperties } from 'react'
+import { useWindowScroll } from 'react-use'
 
 import { useUserInfoStore } from '@/stores'
 
@@ -11,13 +11,13 @@ import Search from './Search'
 import Title from './Title'
 
 function Index() {
-  const scroll = useScroll(document)
+  const { y } = useWindowScroll()
 
   const classNamesMain = classnames(
     'fixed top-0 right-0 z-10 flex flex-row justify-between items-center',
     'hover:bg-white hover:shadow-xl hover:shadow-gray-300/10',
     {
-      'bg-white shadow-xl shadow-gray-300/10': scroll && scroll.top > 0
+      'bg-white shadow-xl shadow-gray-300/10': y > 0
     }
   )
 

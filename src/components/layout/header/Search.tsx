@@ -1,4 +1,4 @@
-import { useBoolean } from 'ahooks'
+import { useState } from 'react'
 
 import Icon from '@/components/icon'
 import useHotkey from '@/hooks/useHotkey'
@@ -7,13 +7,14 @@ import { isMacOS, isWindows } from '@/utils'
 import SearchContent from './SearchContent'
 
 function Search() {
-  const [open, { setTrue, setFalse }] = useBoolean(false)
+  // const [open, { setTrue, setFalse }] = useBoolean(false)
+  const [open, setOpen] = useState(false)
 
   const hotkeyTip = isMacOS ? '⌘ + K' : isWindows ? 'Ctrl + K' : ''
   const hotkey = isMacOS ? 'command+k' : isWindows ? 'ctrl+k' : ''
 
   const handleClick = () => {
-    setTrue()
+    setOpen(true)
   }
 
   useHotkey({
@@ -31,7 +32,7 @@ function Search() {
         <span className="text-sm">搜索</span>
         <span className="text-sm text-gray-300">{hotkeyTip}</span>
       </div>
-      <SearchContent open={open} setFalse={setFalse} />
+      <SearchContent open={open} setClose={() => setOpen(false)} />
     </>
   )
 }

@@ -15,11 +15,11 @@ import { flattenRoute, scrollbarOptions } from '@/utils'
 
 export interface SearchContentProps {
   open: boolean
-  setFalse: () => void
+  setClose: () => void
 }
 
 function SearchContent(props: SearchContentProps) {
-  const { open, setFalse } = props
+  const { open, setClose } = props
   const navigate = useNavigate()
   const inputRef = useRef<InputRef>(null)
   const buttonRefs = useRef<HTMLButtonElement[]>([])
@@ -87,7 +87,7 @@ function SearchContent(props: SearchContentProps) {
     setKeyword('')
     setMenuListFilter([])
     resetFocusIndex()
-    setFalse()
+    setClose()
   }
 
   const selectRoute = (route: Route) => {
@@ -135,7 +135,7 @@ function SearchContent(props: SearchContentProps) {
       title="搜索系统功能"
       footer={null}
       afterOpenChange={handleOpenChange}
-      onCancel={setFalse}
+      onCancel={setClose}
     >
       <div className="space-y-4">
         <Input

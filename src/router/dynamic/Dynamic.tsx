@@ -1,4 +1,5 @@
 import LayoutApp from '@/layout/LayoutApp'
+import Upload from '@/pages/Upload'
 import type { Route } from '@/types/router'
 
 const DashboardRoutes: Route[] = [
@@ -22,7 +23,7 @@ const DashboardRoutes: Route[] = [
       },
       {
         path: '/dashboard/upload',
-        element: <div>Upload</div>,
+        element: <Upload />,
         meta: {
           title: 'Upload',
           icon: 'icon-park-outline:upload'
