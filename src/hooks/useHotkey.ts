@@ -6,7 +6,7 @@ interface HotkeyParams {
   callback: () => void
 }
 
-function useHotkey({ hotkey, callback }: HotkeyParams) {
+export function useHotkey({ hotkey, callback }: HotkeyParams) {
   const cb = useCallback(callback, [callback])
   useEffect(() => {
     hotkeys(hotkey, cb)
@@ -15,5 +15,3 @@ function useHotkey({ hotkey, callback }: HotkeyParams) {
     }
   }, [hotkey, cb])
 }
-
-export default useHotkey

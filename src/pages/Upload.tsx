@@ -1,14 +1,15 @@
-import { useWindowSize } from 'react-use'
+import { useSize } from 'ahooks'
+import { useRef } from 'react'
 
 function Upload() {
-  const { width, height } = useWindowSize()
+  const divRef = useRef<HTMLDivElement>(null)
+  const size = useSize(divRef)
 
   return (
     <div>
-      <h1>upload</h1>
-      <p>
-        width: {width}px, height: {height}px
-      </p>
+      <div ref={divRef} className="w-screen h-20 border border-red-500"></div>
+      <div>width: {size?.width}</div>
+      <div>height: {size?.height}</div>
     </div>
   )
 }

@@ -8,7 +8,7 @@ import type { ChangeEvent, KeyboardEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import Icon from '@/components/icon'
-import useHotkey from '@/hooks/useHotkey'
+import { useHotkey } from '@/hooks/useHotkey'
 import { authRoutes } from '@/router/routes'
 import type { Route } from '@/types/router'
 import { flattenRoute, scrollbarOptions } from '@/utils'

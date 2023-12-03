@@ -1,13 +1,12 @@
 import { useState } from 'react'
 
 import Icon from '@/components/icon'
-import useHotkey from '@/hooks/useHotkey'
+import { useHotkey } from '@/hooks/useHotkey'
 import { isMacOS, isWindows } from '@/utils'
 
 import SearchContent from './SearchContent'
 
 function Search() {
-  // const [open, { setTrue, setFalse }] = useBoolean(false)
   const [open, setOpen] = useState(false)
 
   const hotkeyTip = isMacOS ? '⌘ + K' : isWindows ? 'Ctrl + K' : ''
