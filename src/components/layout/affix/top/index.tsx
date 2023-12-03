@@ -6,12 +6,12 @@ import type { ReactElement } from 'react'
 import { HEADER_HEIGHT } from '../../constants'
 import { useLayoutDashboardAffix } from '../useLayoutDashboardAffix'
 
-export interface AffixBottomProps {
+export interface AffixTopProps {
   children: ReactElement
   onHeightChange?: (height: number) => void
 }
 
-function Index(props: AffixBottomProps) {
+function Index(props: AffixTopProps) {
   const { children, onHeightChange } = props
 
   const { affixed, wrapperRef, size, onChange } = useLayoutDashboardAffix()
