@@ -1,20 +1,32 @@
 import { Affix } from 'antd'
 import classnames from 'classnames'
-import { useEffect } from 'react'
+import { forwardRef, useEffect, useImperativeHandle } from 'react'
 import type { ReactElement } from 'react'
 
 import { HEADER_HEIGHT } from '../../constants'
 import { useLayoutDashboardAffix } from '../useLayoutDashboardAffix'
+import type { AffixRef } from '../useLayoutDashboardAffix'
 
 export interface AffixTopProps {
   children: ReactElement
   onHeightChange?: (height: number) => void
 }
 
-function Index(props: AffixTopProps) {
+const Index = forwardRef<AffixRef, AffixTopProps>(function Index(props, ref) {
   const { children, onHeightChange } = props
 
-  const { affixed, wrapperRef, size, onChange } = useLayoutDashboardAffix()
+  const { affixed, affixRef, wrapperRef, updatePosition, size, onChange } =
+    useLayoutDashboardAffix()
+
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        updatePosition
+      }
+    },
+    [updatePosition]
+  )
 
   useEffect(() => {
     if (size?.height && size.height > 0 && onHeightChange) {
@@ -31,12 +43,12 @@ function Index(props: AffixTopProps) {
   }
 
   return (
-    <Affix offsetTop={HEADER_HEIGHT} onChange={onChange}>
+    <Affix ref={affixRef} offsetTop={HEADER_HEIGHT} onChange={onChange}>
       <div ref={wrapperRef} className={wrapperClassnames} style={wrapperStyle}>
         <div className="px-6 py-4">{children}</div>
       </div>
     </Affix>
   )
-}
+})
 
 export default Index
