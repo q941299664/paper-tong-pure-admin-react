@@ -4,15 +4,15 @@ import { forwardRef, useEffect, useImperativeHandle } from 'react'
 import type { ReactElement } from 'react'
 
 import { HEADER_HEIGHT } from '../../constants'
+import type { LayoutAffixRef } from '../types.ts'
 import { useLayoutDashboardAffix } from '../useLayoutDashboardAffix'
-import type { AffixRef } from '../useLayoutDashboardAffix'
 
 export interface AffixTopProps {
   children: ReactElement
   onHeightChange?: (height: number) => void
 }
 
-const Index = forwardRef<AffixRef, AffixTopProps>(function Index(props, ref) {
+const Index = forwardRef<LayoutAffixRef, AffixTopProps>(function Index(props, ref) {
   const { children, onHeightChange } = props
 
   const { affixed, affixRef, wrapperRef, updatePosition, size, onChange } =

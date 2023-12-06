@@ -3,10 +3,6 @@ import { useRef, useState } from 'react'
 
 import { useAffixAutoUpdate } from '@/hooks/useAffixAutoUpdate'
 
-export interface AffixRef {
-  updatePosition: () => void
-}
-
 export function useLayoutDashboardAffix() {
   const { affixRef, updatePosition } = useAffixAutoUpdate()
 

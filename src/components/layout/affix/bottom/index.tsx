@@ -3,15 +3,15 @@ import classnames from 'classnames'
 import { forwardRef, useEffect, useImperativeHandle } from 'react'
 import type { ReactElement } from 'react'
 
+import type { LayoutAffixRef } from '../types.ts'
 import { useLayoutDashboardAffix } from '../useLayoutDashboardAffix'
-import type { AffixRef } from '../useLayoutDashboardAffix'
 
 export interface AffixBottomProps {
   children: ReactElement
   onHeightChange?: (height: number) => void
 }
 
-const Index = forwardRef<AffixRef, AffixBottomProps>(function Index(props, ref) {
+const Index = forwardRef<LayoutAffixRef, AffixBottomProps>(function Index(props, ref) {
   const { children, onHeightChange } = props
 
   const { affixed, affixRef, wrapperRef, updatePosition, size, onChange } =
