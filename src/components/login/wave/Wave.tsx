@@ -1,6 +1,6 @@
 import './Wave.scss'
 
-function Wave() {
+const Wave = () => {
   return (
     <svg
       className="waves"

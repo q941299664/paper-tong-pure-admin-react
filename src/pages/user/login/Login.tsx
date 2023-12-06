@@ -10,7 +10,7 @@ import type { LoginData } from '@/types/user'
 
 import './Login.scss'
 
-function Login() {
+const Login = () => {
   const navigate = useNavigate()
 
   const onFinish = async (values: LoginData) => {

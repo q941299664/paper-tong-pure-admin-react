@@ -1,4 +1,4 @@
-function Dashboard() {
+const Dashboard = () => {
   return (
     <div>
       <h1>Dashboard1</h1>

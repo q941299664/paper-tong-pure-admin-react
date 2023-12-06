@@ -10,7 +10,7 @@ import Group from './Group'
 import Search from './Search'
 import Title from './Title'
 
-function Index() {
+const Header = () => {
   const { y } = useWindowScroll()
 
   const classNamesMain = classnames(
@@ -43,4 +43,4 @@ function Index() {
   )
 }
 
-export default Index
+export default Header

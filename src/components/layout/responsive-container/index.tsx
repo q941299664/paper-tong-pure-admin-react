@@ -1,15 +1,15 @@
 import { useResponsive } from 'ahooks'
 import { useEffect, useState } from 'react'
-import type { ReactElement } from 'react'
+import type { ReactNode } from 'react'
 
 import { SCREEN_BREAK_POINTS, SIDEBAR_WIDTH } from '../constants'
 import type { Breakpoints } from '../constants'
 
 export interface ResponsiveContainerProps {
-  children: ReactElement
+  children: ReactNode
 }
 
-function Index(props: ResponsiveContainerProps) {
+const ResponsiveContainer = (props: ResponsiveContainerProps) => {
   const { children } = props
   const [maxWidth, setMaxWidth] = useState('')
   const responsive = useResponsive()
@@ -42,4 +42,4 @@ function Index(props: ResponsiveContainerProps) {
   )
 }
 
-export default Index
+export default ResponsiveContainer

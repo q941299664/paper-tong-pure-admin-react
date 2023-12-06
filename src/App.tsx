@@ -3,7 +3,7 @@ import { HashRouter } from 'react-router-dom'
 import AuthRouter from '@/components/router/AuthRouter'
 import Router from '@/router'
 
-function App() {
+const App = () => {
   return (
     <>
       <HashRouter>

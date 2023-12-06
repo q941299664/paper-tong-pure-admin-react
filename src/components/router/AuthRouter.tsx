@@ -1,11 +1,11 @@
-import type { ReactElement } from 'react'
+import type { ReactNode } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
 
 import { rootRoutes } from '@/router/routes'
 import { useUserInfoStore } from '@/stores'
 import { searchRoute } from '@/utils'
 
-const AuthRouter = ({ children }: { children: ReactElement }) => {
+const AuthRouter = ({ children }: { children: ReactNode }) => {
   const { pathname } = useLocation()
   const userInfo = useUserInfoStore(state => state.userInfo)
 

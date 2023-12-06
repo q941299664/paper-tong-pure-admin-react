@@ -3,7 +3,7 @@ import { useRef, useState } from 'react'
 
 import { useAffixAutoUpdate } from '@/hooks/useAffixAutoUpdate'
 
-export function useLayoutDashboardAffix() {
+export const useLayoutDashboardAffix = () => {
   const { affixRef, updatePosition } = useAffixAutoUpdate()
 
   const [affixed, setAffixed] = useState(false)
@@ -11,7 +11,7 @@ export function useLayoutDashboardAffix() {
   const wrapperRef = useRef(null)
   const size = useSize(wrapperRef)
 
-  function onChange(_affixed?: boolean) {
+  const onChange = (_affixed?: boolean) => {
     setAffixed(_affixed ?? false)
   }
 

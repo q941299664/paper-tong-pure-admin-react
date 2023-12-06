@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 import { HEADER_HEIGHT, SIDEBAR_WIDTH } from '@/components/layout/constants'
 
-function Index() {
+const Body = () => {
   const bodyStyle: CSSProperties = {
     paddingTop: HEADER_HEIGHT,
     paddingLeft: SIDEBAR_WIDTH,
@@ -17,4 +17,4 @@ function Index() {
   )
 }
 
-export default Index
+export default Body

@@ -1,6 +1,11 @@
-import type { ReactElement } from 'react'
+import type { ReactNode } from 'react'
 
-function Group({ children }: { children: ReactElement }) {
+interface GroupProps {
+  children: ReactNode
+}
+
+const Group = (props: GroupProps) => {
+  const { children } = props
   return <div className="flex flex-row p-2">{children}</div>
 }
 

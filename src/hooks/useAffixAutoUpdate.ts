@@ -7,7 +7,7 @@ export interface AffixRef {
   updatePosition: ReturnType<typeof throttleByAnimationFrame>
 }
 
-export function useAffixAutoUpdate() {
+export const useAffixAutoUpdate = () => {
   const affixRef = useRef<AffixRef>(null)
   const { width } = useWindowSize()
 

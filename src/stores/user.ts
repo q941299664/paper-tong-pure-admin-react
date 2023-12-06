@@ -26,6 +26,6 @@ export const useUserInfoStore = create<UserInfoState>()(
   )
 )
 
-export function setUserInfo(info: UserInfo) {
+export const setUserInfo = (info: UserInfo) => {
   useUserInfoStore.setState({ userInfo: info })
 }

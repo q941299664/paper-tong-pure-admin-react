@@ -3,7 +3,7 @@ import { resolvePath } from 'react-router-dom'
 
 import type { Route } from '@/types/router'
 
-export function searchRoute(pathname: string, routes: Route[]): Route {
+export const searchRoute = (pathname: string, routes: Route[]): Route => {
   let result: Route = {}
   for (const route of routes) {
     if (route.path === pathname) return route
@@ -17,7 +17,7 @@ export function searchRoute(pathname: string, routes: Route[]): Route {
   return result
 }
 
-export function flattenRoute(routes: Route[]): Route[] {
+export const flattenRoute = (routes: Route[]): Route[] => {
   return flatMap(routes, route => {
     if (route.children) {
       return [omit(route, ['children']), ...flattenRoute(route.children)]
@@ -26,7 +26,7 @@ export function flattenRoute(routes: Route[]): Route[] {
   })
 }
 
-export function normalizeRoute(routes: Route[], isSort = true): Route[] {
+export const normalizeRoute = (routes: Route[], isSort = true): Route[] => {
   const result: Route[] = []
 
   for (const route of routes) {
@@ -51,7 +51,7 @@ export function normalizeRoute(routes: Route[], isSort = true): Route[] {
   return result
 }
 
-export function getOpenKeys(path: string): string[] {
+export const getOpenKeys = (path: string): string[] => {
   let i = 1
   const arr: string[] = []
   for (;;) {

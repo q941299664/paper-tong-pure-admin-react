@@ -12,7 +12,7 @@ import { getOpenKeys, scrollbarOptions } from '@/utils'
 
 import { SIDEBAR_WIDTH } from '../constants'
 
-function Index() {
+const Sidebar = () => {
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const [openKeys, setOpenKeys] = useState<string[]>(getOpenKeys(pathname))
@@ -77,4 +77,4 @@ function Index() {
   )
 }
 
-export default Index
+export default Sidebar

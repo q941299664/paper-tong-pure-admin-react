@@ -1,3 +1,5 @@
-function Index() {}
+const CrudContainer = () => {
+  return <div></div>
+}
 
-export default Index
+export default CrudContainer

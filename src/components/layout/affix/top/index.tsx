@@ -1,18 +1,18 @@
 import { Affix } from 'antd'
 import classnames from 'classnames'
 import { forwardRef, useEffect, useImperativeHandle } from 'react'
-import type { ReactElement } from 'react'
+import type { ReactNode } from 'react'
 
 import { HEADER_HEIGHT } from '../../constants'
 import type { LayoutAffixRef } from '../types.ts'
 import { useLayoutDashboardAffix } from '../useLayoutDashboardAffix'
 
 export interface AffixTopProps {
-  children: ReactElement
+  children: ReactNode
   onHeightChange?: (height: number) => void
 }
 
-const Index = forwardRef<LayoutAffixRef, AffixTopProps>(function Index(props, ref) {
+const AffixTop = forwardRef<LayoutAffixRef, AffixTopProps>((props, ref) => {
   const { children, onHeightChange } = props
 
   const { affixed, affixRef, wrapperRef, updatePosition, size, onChange } =
@@ -51,4 +51,4 @@ const Index = forwardRef<LayoutAffixRef, AffixTopProps>(function Index(props, re
   )
 })
 
-export default Index
+export default AffixTop

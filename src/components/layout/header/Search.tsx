@@ -6,7 +6,7 @@ import { isMacOS, isWindows } from '@/utils'
 
 import SearchContent from './SearchContent'
 
-function Search() {
+const Search = () => {
   const [open, setOpen] = useState(false)
 
   const hotkeyTip = isMacOS ? '⌘ + K' : isWindows ? 'Ctrl + K' : ''

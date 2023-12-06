@@ -18,7 +18,7 @@ export interface SearchContentProps {
   setClose: () => void
 }
 
-function SearchContent(props: SearchContentProps) {
+const SearchContent = (props: SearchContentProps) => {
   const { open, setClose } = props
   const navigate = useNavigate()
   const inputRef = useRef<InputRef>(null)

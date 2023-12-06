@@ -1,7 +1,7 @@
 import { useResponsive, useSize } from 'ahooks'
 import { useRef } from 'react'
 
-function Upload() {
+const Upload = () => {
   const divRef = useRef<HTMLDivElement>(null)
   const size = useSize(divRef)
   const responsive = useResponsive()

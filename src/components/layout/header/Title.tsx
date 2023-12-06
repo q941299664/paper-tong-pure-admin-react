@@ -4,7 +4,7 @@ import Icon from '@/components/icon'
 import { authRoutes } from '@/router/routes'
 import { searchRoute } from '@/utils'
 
-function Title() {
+const Title = () => {
   const { pathname } = useLocation()
   const navigate = useNavigate()
 
