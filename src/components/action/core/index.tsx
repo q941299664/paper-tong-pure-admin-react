@@ -7,7 +7,6 @@ import Icon from '@/components/icon'
 import { ActionContext } from '../actionContext'
 
 export type ActionCoreProps = ButtonProps & {
-  children?: string
   confirm?: boolean
   icon?: string
   noIcon?: boolean
