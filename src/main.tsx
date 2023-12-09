@@ -2,7 +2,6 @@ import { StyleProvider } from '@ant-design/cssinjs'
 import { configResponsive } from 'ahooks'
 import { App as AntdApp, ConfigProvider } from 'antd'
 import zhCN from 'antd/locale/zh_CN'
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 
 import '@/styles/index.scss'
@@ -18,13 +17,11 @@ configResponsive({
 })
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ConfigProvider locale={zhCN}>
-      <AntdApp>
-        <StyleProvider hashPriority="high">
-          <App />
-        </StyleProvider>
-      </AntdApp>
-    </ConfigProvider>
-  </React.StrictMode>
+  <ConfigProvider locale={zhCN}>
+    <AntdApp>
+      <StyleProvider hashPriority="high">
+        <App />
+      </StyleProvider>
+    </AntdApp>
+  </ConfigProvider>
 )
