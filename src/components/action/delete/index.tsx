@@ -1,7 +1,11 @@
 import ActionCore from '../core'
+import type { ActionCoreProps } from '../core'
 
-const ActionDelete = () => {
-  const props = {
+export interface ActionDeleteProps extends ActionCoreProps {}
+
+const ActionDelete = (props: ActionDeleteProps) => {
+  const actionProps = {
+    ...props,
     confirmTitle: '确认删除？',
     confirmOkText: '删除',
     confirmCancelText: '取消',
@@ -9,7 +13,7 @@ const ActionDelete = () => {
     danger: true
   }
 
-  return <ActionCore {...props}>删除</ActionCore>
+  return <ActionCore {...actionProps}>删除</ActionCore>
 }
 
 export default ActionDelete
