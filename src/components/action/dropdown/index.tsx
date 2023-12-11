@@ -2,11 +2,11 @@ import type { ReactNode } from 'react'
 
 import { ActionContext } from '../actionContext'
 
-export interface ActionDropdownProps {
+export interface DropdownProps {
   children: ReactNode
 }
 
-const ActionDropdown = (props: ActionDropdownProps) => {
+const Dropdown = (props: DropdownProps) => {
   const { children } = props
   return (
     <ActionContext.Provider value={{ name: 'Dropdown' }}>
@@ -15,4 +15,4 @@ const ActionDropdown = (props: ActionDropdownProps) => {
   )
 }
 
-export default ActionDropdown
+export default Dropdown
