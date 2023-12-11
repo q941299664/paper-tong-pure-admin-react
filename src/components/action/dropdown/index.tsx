@@ -9,7 +9,7 @@ export interface ActionDropdownProps {
 const ActionDropdown = (props: ActionDropdownProps) => {
   const { children } = props
   return (
-    <ActionContext.Provider value={{ name: 'ActionDropdown' }}>
+    <ActionContext.Provider value={{ name: 'Dropdown' }}>
       <div>{children}</div>
     </ActionContext.Provider>
   )

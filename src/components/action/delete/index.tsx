@@ -1,19 +1,19 @@
-import ActionCore from '../core'
-import type { ActionCoreProps } from '../core'
+import Core from '../core'
+import type { CoreProps } from '../core'
 
-export interface ActionDeleteProps extends ActionCoreProps {}
+export interface DeleteProps extends CoreProps {}
 
-const ActionDelete = (props: ActionDeleteProps) => {
-  const actionProps = {
-    ...props,
+const Delete = (props: DeleteProps) => {
+  const attrs = {
     confirmTitle: '确认删除？',
     confirmOkText: '删除',
     confirmCancelText: '取消',
     icon: 'icon-park-outline:delete',
-    danger: true
+    danger: true,
+    ...props
   }
 
-  return <ActionCore {...actionProps}>删除</ActionCore>
+  return <Core {...attrs}>删除</Core>
 }
 
-export default ActionDelete
+export default Delete

@@ -10,7 +10,7 @@ import Icon from '@/components/icon'
 
 import { ActionContext } from '../actionContext'
 
-export type ActionCoreProps = ButtonProps & {
+export type CoreProps = ButtonProps & {
   confirm?: boolean
   confirmTitle?: string
   icon?: string
@@ -19,10 +19,10 @@ export type ActionCoreProps = ButtonProps & {
   onClick?: () => void
 }
 
-const ActionCore = (props: ActionCoreProps) => {
+const Core = (props: CoreProps) => {
   const { confirm, noIcon, noText, ...attrs } = props
   const { name } = useContext(ActionContext)
-  const isInDropdown = name === 'ActionDropdown'
+  const isInDropdown = name === 'Dropdown'
   let buttonProps = {
     ...attrs,
     icon: noIcon ? null : attrs.icon
@@ -53,4 +53,4 @@ const ActionCore = (props: ActionCoreProps) => {
   return isInDropdown ? renderMenuItem() : renderButton()
 }
 
-export default ActionCore
+export default Core

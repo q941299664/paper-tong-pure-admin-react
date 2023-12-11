@@ -1,14 +1,14 @@
-import ActionCore from '../core'
-import type { ActionCoreProps } from '../core'
+import Core from '../core'
+import type { CoreProps } from '../core'
 
-export interface ActionCreateProps extends ActionCoreProps {}
+export interface CreateProps extends CoreProps {}
 
-const ActionCreate = (props: ActionCreateProps) => {
-  return (
-    <ActionCore icon="icon-park-outline:add-one" {...props}>
-      新建
-    </ActionCore>
-  )
+const Create = (props: CreateProps) => {
+  const attrs = {
+    icon: 'icon-park-outline:add-one',
+    ...props
+  }
+  return <Core {...attrs}>新建</Core>
 }
 
-export default ActionCreate
+export default Create
