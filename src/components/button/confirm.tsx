@@ -18,12 +18,13 @@ const ButtonConfirm = (props: ButtonConfirmProps) => {
   const confirmProps = mapKeys(
     pickBy(attrs, (_value, key) => confirmPropKeys.includes(key)),
     (_value, key) => camelCase(key.replace(/^confirm/, ''))
-  ) as PopconfirmProps
+  )
+
   const buttonProps = pickBy(attrs, (_value, key) => !key.startsWith('confirm'))
 
   return (
-    <Popconfirm {...confirmProps} onConfirm={onClick}>
-      <Button {...buttonProps}>{children}</Button>
+    <Popconfirm {...(confirmProps as PopconfirmProps)} onConfirm={onClick}>
+      <Button {...(buttonProps as ButtonProps)}>{children}</Button>
     </Popconfirm>
   )
 }
