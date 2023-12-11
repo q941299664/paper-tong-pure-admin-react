@@ -1,6 +1,7 @@
 import { Button as AntdButton, Space } from 'antd'
 import type { ButtonProps as AntdButtonProps } from 'antd'
 import { compact } from 'lodash-es'
+import { Fragment } from 'react'
 import type { ReactNode } from 'react'
 
 import Icon from '@/components/icon'
@@ -30,7 +31,13 @@ const Button = (props: ButtonProps) => {
         break
     }
     if (children.length > 1) {
-      return <Space size={space}>{children}</Space>
+      return (
+        <Space size={space}>
+          {children.map((item, index) => {
+            return <Fragment key={index}>{item}</Fragment>
+          })}
+        </Space>
+      )
     }
     return children
   }
