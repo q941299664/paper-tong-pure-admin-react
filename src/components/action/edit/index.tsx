@@ -4,11 +4,11 @@ import type { CoreProps } from '../core'
 export interface EditProps extends CoreProps {}
 
 const Edit = (props: EditProps) => {
-  const attrs = {
-    icon: 'icon-park-outline:edit',
-    ...props
-  }
-  return <Core {...attrs}>修改</Core>
+  return (
+    <Core icon="icon-park-outline:edit" {...props}>
+      修改
+    </Core>
+  )
 }
 
 export default Edit
