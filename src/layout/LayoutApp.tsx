@@ -1,13 +1,11 @@
-import Body from '@/components/layout/body'
-import Index from '@/components/layout/header'
-import Sidebar from '@/components/layout/sidebar'
+import { LayoutBody, LayoutHeader, LayoutSidebar } from '@/components/layout'
 
 const LayoutApp = () => {
   return (
     <>
-      <Index />
-      <Sidebar />
-      <Body />
+      <LayoutHeader />
+      <LayoutSidebar />
+      <LayoutBody />
     </>
   )
 }

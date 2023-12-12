@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react'
 import { Outlet } from 'react-router-dom'
 
-import { HEADER_HEIGHT, SIDEBAR_WIDTH } from '@/components/layout/constants'
+import { HEADER_HEIGHT, SIDEBAR_WIDTH } from '../constants'
 
 const Body = () => {
   const bodyStyle: CSSProperties = {

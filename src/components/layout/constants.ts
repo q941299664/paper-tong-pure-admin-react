@@ -15,6 +15,7 @@ export enum Breakpoints {
   xl = 'xl',
   '2xl' = '2xl'
 }
+
 type ScreenBreakPoints = {
   [key in Breakpoints]: number
 }
