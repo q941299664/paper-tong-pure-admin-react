@@ -1,17 +1,20 @@
-import type { ReactNode } from 'react'
+import { Dropdown as AntdDropdown } from 'antd'
+import type { DropdownProps as AntdDropdownProps } from 'antd'
 
-import { ActionContext } from '../actionContext'
+import Icon from '@/components/icon'
 
-export interface DropdownProps {
-  children: ReactNode
-}
+export interface DropdownProps extends AntdDropdownProps {}
 
 const Dropdown = (props: DropdownProps) => {
-  const { children } = props
+  const { menu } = props
+
   return (
-    <ActionContext.Provider value={{ name: 'Dropdown' }}>
-      <div>{children}</div>
-    </ActionContext.Provider>
+    <AntdDropdown menu={menu}>
+      <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+        <span>更多操作</span>
+        <Icon icon="icon-park-outline:down" />
+      </a>
+    </AntdDropdown>
   )
 }
 
