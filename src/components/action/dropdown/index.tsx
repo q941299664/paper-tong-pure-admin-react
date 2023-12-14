@@ -1,7 +1,7 @@
 import { Dropdown as AntdDropdown } from 'antd'
 import type { DropdownProps as AntdDropdownProps } from 'antd'
 
-import Icon from '@/components/icon'
+import Core from '../core'
 
 export interface DropdownProps extends AntdDropdownProps {}
 
@@ -10,10 +10,9 @@ const Dropdown = (props: DropdownProps) => {
 
   return (
     <AntdDropdown menu={menu}>
-      <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-        <span>更多操作</span>
-        <Icon icon="icon-park-outline:down" />
-      </a>
+      <Core type="link" icon="icon-park-outline:down" iconRight>
+        更多操作
+      </Core>
     </AntdDropdown>
   )
 }
