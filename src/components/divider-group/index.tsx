@@ -14,13 +14,7 @@ const DividerGroup = (props: DividerGroupProps) => {
   const childList = Children.toArray(children)
 
   const result = joinItem(childList, divider)
-  return (
-    <>
-      {result.map((item, index) => {
-        return <Fragment key={index}>{item}</Fragment>
-      })}
-    </>
-  )
+  return result.map((item, index) => <Fragment key={index}>{item}</Fragment>)
 }
 
 export default DividerGroup
