@@ -1,27 +1,30 @@
-export function createHook(defaultHook?: (param: any) => any, sync = false) {
-  const handlers: Array<(param: any) => any> = []
+type CreateHookFn = (...args: unknown[]) => unknown
+type CreateHookParams = unknown
+
+export function createHook(defaultHook?: CreateHookFn, sync = false) {
+  const handlers: Array<CreateHookFn> = []
 
   if (defaultHook) {
     handlers.push(defaultHook)
   }
 
-  const off = (fn: (param: any) => any) => {
+  const off = (fn: CreateHookFn) => {
     const index = handlers.indexOf(fn)
     if (index !== -1) {
       handlers.splice(index, 1)
     }
   }
 
-  const on = (fn: (param: any) => any) => {
+  const on = (fn: CreateHookFn) => {
     handlers.push(fn)
     return { off: () => off(fn) }
   }
 
   const trigger = sync
-    ? (param: any) => {
+    ? (param: CreateHookParams) => {
         return handlers.reduce((acc, fn) => fn(acc), param)
       }
-    : async (param: any) => {
+    : async (param: CreateHookParams) => {
         for (const fn of handlers) {
           param = await Promise.resolve(fn(param))
         }
