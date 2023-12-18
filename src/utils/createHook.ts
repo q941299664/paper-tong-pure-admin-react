@@ -1,5 +1,5 @@
-type CreateHookFn = (...args: unknown[]) => unknown
-type CreateHookParams = unknown
+type CreateHookFn = (...args: any[]) => any
+type CreateHookParams = any
 
 export function createHook(defaultHook?: CreateHookFn, sync = false) {
   const handlers: Array<CreateHookFn> = []
