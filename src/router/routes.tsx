@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom'
 import NotFound from '@/pages/NotFound'
 import Login from '@/pages/user/login/Login'
 import type { Route } from '@/types/router'
-import { normalizeRoute } from '@/utils'
+import { normalizeRoute } from '@/utils/route'
 
 const dynamicRoutes: Route[] = []
 

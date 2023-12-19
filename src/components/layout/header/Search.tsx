@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import Icon from '@/components/icon'
 import { useHotkey } from '@/hooks/useHotkey'
-import { isMacOS, isWindows } from '@/utils'
+import { isMacOS, isWindows } from '@/utils/browser'
 
 import SearchContent from './SearchContent'
 

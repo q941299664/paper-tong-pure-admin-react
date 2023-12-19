@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import Icon from '@/components/icon'
 import { authRoutes } from '@/router/routes'
-import { searchRoute } from '@/utils'
+import { searchRoute } from '@/utils/route'
 
 const Title = () => {
   const { pathname } = useLocation()

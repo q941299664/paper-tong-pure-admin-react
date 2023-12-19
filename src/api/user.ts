@@ -1,5 +1,5 @@
 import type { LoginData, UserInfo, UserInfoRes } from '@/types/user'
-import { http } from '@/utils'
+import { http } from '@/utils/http'
 
 export const userLoginApi = (data: LoginData): Promise<UserInfo> => {
   return http({

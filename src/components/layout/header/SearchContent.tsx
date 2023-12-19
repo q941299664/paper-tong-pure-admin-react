@@ -11,7 +11,8 @@ import Icon from '@/components/icon'
 import { useHotkey } from '@/hooks/useHotkey'
 import { authRoutes } from '@/router/routes'
 import type { Route } from '@/types/router'
-import { flattenRoute, scrollbarOptions } from '@/utils'
+import { scrollbarOptions } from '@/utils/overlayscrollbars'
+import { flattenRoute } from '@/utils/route'
 
 export interface SearchContentProps {
   open: boolean

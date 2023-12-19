@@ -2,7 +2,7 @@ import { Divider } from 'antd'
 import { Children, Fragment } from 'react'
 import type { ReactNode } from 'react'
 
-import { joinItem } from '@/utils'
+import { joinItem } from '@/utils/array'
 
 interface DividerGroupProps {
   children: ReactNode

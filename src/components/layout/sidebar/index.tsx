@@ -8,7 +8,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import Icon from '@/components/icon'
 import { authRoutes } from '@/router/routes'
-import { getOpenKeys, scrollbarOptions } from '@/utils'
+import { scrollbarOptions } from '@/utils/overlayscrollbars'
+import { getOpenKeys } from '@/utils/route'
 
 import { SIDEBAR_WIDTH } from '../constants'
 
