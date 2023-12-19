@@ -77,6 +77,8 @@ module.exports = {
         args: 'none',
         ignoreRestSiblings: true,
       },
-    ]
+    ],
+    // allow any type
+    '@typescript-eslint/no-explicit-any': 0
   },
 }
