@@ -2,7 +2,7 @@ import { message } from 'antd'
 import Axios from 'axios'
 import type { InternalAxiosRequestConfig } from 'axios'
 
-import { storage } from '@/utils/storage'
+import { storage } from './storage'
 
 export const http = Axios.create({
   baseURL: import.meta.env.VITE_API_URL
