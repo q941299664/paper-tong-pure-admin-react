@@ -1,13 +1,13 @@
 const storagePrefix = 'a-admin'
 
 export const storage = {
-  getToken() {
-    return JSON.parse(window.localStorage.getItem(`${storagePrefix}-token`) as string)
+  set(key: string, value: string) {
+    localStorage.setItem(`${storagePrefix}-${key}`, value)
   },
-  setToken(token: string) {
-    window.localStorage.setItem(`${storagePrefix}-token`, JSON.stringify(token))
+  get(key: string) {
+    return localStorage.getItem(`${storagePrefix}-${key}`)
   },
-  clearToken() {
-    window.localStorage.removeItem(`${storagePrefix}-token`)
+  clear(key: string) {
+    localStorage.removeItem(`${storagePrefix}-${key}`)
   }
 }

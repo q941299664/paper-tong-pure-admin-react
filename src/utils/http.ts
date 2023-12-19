@@ -9,7 +9,7 @@ export const http = Axios.create({
 })
 
 http.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-  const token = storage.getToken()
+  const token = storage.get('token')
 
   if (token) config.headers.token = `token`
 
@@ -23,7 +23,7 @@ http.interceptors.response.use(
       return data.data
     } else {
       message.error(data.message)
-      if (data.code === 401) storage.clearToken()
+      if (data.code === 401) storage.clear('token')
 
       return Promise.reject(data)
     }
