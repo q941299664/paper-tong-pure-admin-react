@@ -23,6 +23,6 @@ export function bridgeGet(id: string) {
 export function useBridge() {
   const { search } = useLocation()
   const query = new URLSearchParams(search)
-  const bridgeID = query.get('bridge')
+  const bridgeID = query.get(bridgeKey)
   return bridgeID ? bridgeGet(bridgeID) : null
 }
