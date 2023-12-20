@@ -29,6 +29,10 @@ interface UseListPageModuleParams<K> {
   pageDetailPath?: string
 }
 
+type LoadingFunction = (...args: any[]) => Promise<any>
+
+type SelectState = (string | number)[]
+
 export function useListPageModule<T extends Record<K, any>, K extends string = 'id'>({
   http = null, // 特殊情况下，可以传入 http 实例 比如调用另一个系统的接口
   columns = [], // 表格的列配置
@@ -56,7 +60,6 @@ export function useListPageModule<T extends Record<K, any>, K extends string = '
     setLoadingState(value)
   }
 
-  type LoadingFunction = (...args: any[]) => Promise<any>
   async function loadingFunctionWrapper(fn: LoadingFunction) {
     loadingStateSet(true)
     try {
@@ -128,7 +131,6 @@ export function useListPageModule<T extends Record<K, any>, K extends string = '
   }
 
   // ---------------------------------------- select ----------------------------------------
-  type SelectState = (string | number)[]
   const [selectStateCurrentPage, setSelectStateCurrentPage] = useState<SelectState>([])
   const [selectStateOtherPage, setSelectStateOtherPage] = useState<SelectState>([])
   const selectState = union(selectStateOtherPage, selectStateCurrentPage)
