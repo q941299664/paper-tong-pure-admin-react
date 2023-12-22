@@ -291,7 +291,18 @@ export function useListPageModule<T extends Record<K, any>, K extends string = '
     disabled: loadingState,
     showLessItems: true,
     showTotal: (total: number) => `共 ${total} 条记录`,
-    change: () => actionFetch()
+    onChange: handlePaginationChange,
+    onShowSizeChange: handlePaginationSizeChange
+  }
+
+  function handlePaginationChange(page: number) {
+    setPageNo(page)
+    actionFetch()
+  }
+
+  function handlePaginationSizeChange(_current: number, size: number) {
+    setPageSize(size)
+    actionFetch()
   }
 
   // ---------------------------------------- others ----------------------------------------
