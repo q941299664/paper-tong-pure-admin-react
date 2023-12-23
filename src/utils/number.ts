@@ -1,21 +1,38 @@
 import { isFinite, isString } from 'lodash-es'
 
-// 数字转换为千分位字符串形式
+/**
+ * 数字转换为千分位字符串形式
+ * @param number
+ */
 export function numberFormatThousand(number: number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
-// 判断一个值是否可以被解析为数字
+/**
+ * 判断一个值是否可以被解析为数字
+ * @param source
+ */
 export function isResolvableNumber(source: any) {
   return isString(source) ? isFinite(Number(source)) : isFinite(source)
 }
 
-// 将传入的值解析为数字
+/**
+ * 将传入的值解析为数字
+ * @param source
+ * @param defaultValue
+ * @returns 解析结果或 defaultValue
+ */
 export function numberResolve(source: number, defaultValue: number) {
   return isResolvableNumber(source) ? Number(source) : defaultValue
 }
 
-// 将数字格式化为指定小数位的字符串
+/**
+ * 将数字格式化为指定小数位的字符串
+ * @param source
+ * @param decimalCount 小数位数
+ * @param round 是否四舍五入
+ * @param defaultValue
+ */
 export function numberFormat(
   source: number,
   decimalCount = 0,
