@@ -47,8 +47,6 @@ interface UseFormPageModuleParams {
   objectURL?: string
   customSubmit?: ((form: any) => Promise<any>) | null
   customLoad?: ((id: string) => Promise<any>) | null
-  form?: any
-  rules?: any
   backAfterSuccess?: boolean
 }
 
@@ -56,8 +54,6 @@ export function useFormPageModule({
   objectURL = '', // 如果是标准的 restful api 则根据此路径自动生成创建和修改的 url
   customSubmit = null, // 自定义提交方法
   customLoad = null, // 自定义加载方法
-  form = {}, // 表单数据 可以是 ref 或者是普通对象
-  rules = {}, // 表单验证规则 可以是 ref 或者是普通对象
   backAfterSuccess = true // 保存成功后是否返回
 }: UseFormPageModuleParams = {}) {
   const location = useLocation()
@@ -76,11 +72,14 @@ export function useFormPageModule({
 
   // ---------------------------------------- form ----------------------------------------
   const query = new URLSearchParams(location.search)
-  const bridgeID = query.get(bridgeKey)
+  const bridgeID = query.get(bridgeKey) as string
   const [formState, setFormState] = useState({})
 
   Form.useWatch((values: any) => {
-    setFormState(values)
+    setFormState({
+      ...values,
+      ...bridgeGet(bridgeID)
+    })
   })
 
   const { on: convertSubmitForm, trigger: convertSubmitFormTrigger } = createHook(e => e)
@@ -101,7 +100,7 @@ export function useFormPageModule({
         throw new Error('请传入 objectURL 或者 customSubmit')
       }
       if (backAfterSuccess) {
-        // router.go(-1)
+        navigate(-1)
       }
     } catch (error) {
       console.error(error)
@@ -148,4 +147,43 @@ export function useFormPageModule({
   }
 
   // ---------------------------------------- props ----------------------------------------
+  const formProps = {
+    model: formState,
+    labelCol: formLabelCol,
+    wrapperCol: formWrapperCol,
+    autocomplete: 'off',
+    onFinish: formSubmit
+  }
+
+  // ---------------------------------------- others ----------------------------------------
+  const title = isCreateMode ? '新建' : '编辑'
+
+  if (isEditMode) {
+    formLoad()
+  }
+
+  return {
+    id,
+    // loading
+    loading,
+    setLoading,
+    // mode
+    isCreateMode,
+    isEditMode,
+    // form
+    form,
+    formState,
+    setFormState,
+    convertSubmitForm,
+    formSubmit,
+    formReset,
+    formValidate,
+    formTriggerSubmit,
+    formLoad,
+    afterFormLoad,
+    // props
+    formProps,
+    // others
+    title
+  }
 }
