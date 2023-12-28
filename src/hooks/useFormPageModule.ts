@@ -84,6 +84,8 @@ export function useFormPageModule({
 
   const { on: convertSubmitForm, trigger: convertSubmitFormTrigger } = createHook(e => e)
 
+  const { on: afterFormSubmit, trigger: afterFormSubmitTrigger } = createHook(e => e, true)
+
   async function formSubmit() {
     setLoading(true)
     try {
@@ -99,6 +101,7 @@ export function useFormPageModule({
       } else {
         throw new Error('请传入 objectURL 或者 customSubmit')
       }
+      await afterFormSubmitTrigger(null)
       if (backAfterSuccess) {
         navigate(-1)
       }
@@ -139,7 +142,7 @@ export function useFormPageModule({
       } else {
         throw new Error('请传入 objectURL 或者 customLoad')
       }
-      afterFormLoadTrigger({})
+      afterFormLoadTrigger(null)
     } catch (error) {
       console.error(error)
     }
@@ -176,6 +179,7 @@ export function useFormPageModule({
     setFormState,
     convertSubmitForm,
     formSubmit,
+    afterFormSubmit,
     formReset,
     formValidate,
     formTriggerSubmit,
