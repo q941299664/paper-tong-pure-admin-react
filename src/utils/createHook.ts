@@ -21,10 +21,10 @@ export function createHook(defaultHook?: CreateHookFn, sync = false) {
   }
 
   const trigger = sync
-    ? (param: CreateHookParams) => {
+    ? (param: CreateHookParams = null) => {
         return handlers.reduce((acc, fn) => fn(acc), param)
       }
-    : async (param: CreateHookParams) => {
+    : async (param: CreateHookParams = null) => {
         for (const fn of handlers) {
           param = await Promise.resolve(fn(param))
         }

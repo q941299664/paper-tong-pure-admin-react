@@ -101,7 +101,7 @@ export function useFormPageModule({
       } else {
         throw new Error('请传入 objectURL 或者 customSubmit')
       }
-      await afterFormSubmitTrigger(null)
+      await afterFormSubmitTrigger()
       if (backAfterSuccess) {
         navigate(-1)
       }
@@ -142,7 +142,7 @@ export function useFormPageModule({
       } else {
         throw new Error('请传入 objectURL 或者 customLoad')
       }
-      afterFormLoadTrigger(null)
+      afterFormLoadTrigger()
     } catch (error) {
       console.error(error)
     }
