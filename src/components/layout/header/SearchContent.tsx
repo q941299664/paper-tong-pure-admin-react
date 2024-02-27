@@ -1,39 +1,39 @@
-import { Empty, Input, Modal } from 'antd'
-import type { InputRef } from 'antd'
-import classnames from 'classnames'
-import 'overlayscrollbars/overlayscrollbars.css'
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
-import { useEffect, useRef, useState } from 'react'
-import type { ChangeEvent, KeyboardEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Empty, Input, Modal } from 'antd';
+import type { InputRef } from 'antd';
+import classnames from 'classnames';
+import 'overlayscrollbars/overlayscrollbars.css';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+import { useEffect, useRef, useState } from 'react';
+import type { ChangeEvent, KeyboardEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import Icon from '@/components/icon'
-import { useHotkey } from '@/hooks/useHotkey'
-import { authRoutes } from '@/router/routes'
-import type { Route } from '@/types/router'
-import { scrollbarOptions } from '@/utils/overlayscrollbars'
-import { flattenRoute } from '@/utils/route'
+import Icon from '@/components/icon';
+import { useHotkey } from '@/hooks/useHotkey';
+import { authRoutes } from '@/router/routes';
+import type { Route } from '@/types/router';
+import { scrollbarOptions } from '@/utils/overlayscrollbars';
+import { flattenRoute } from '@/utils/route';
 
 export interface SearchContentProps {
-  open: boolean
-  setClose: () => void
+  open: boolean;
+  setClose: () => void;
 }
 
 const SearchContent = (props: SearchContentProps) => {
-  const { open, setClose } = props
-  const navigate = useNavigate()
-  const inputRef = useRef<InputRef>(null)
-  const buttonRefs = useRef<HTMLButtonElement[]>([])
-  const [focusIndex, setFocusIndex] = useState(-1)
-  const [keyword, setKeyword] = useState('')
-  const [menuListFilter, setMenuListFilter] = useState<Route[]>([])
-  const flatRoutes = flattenRoute(authRoutes)
+  const { open, setClose } = props;
+  const navigate = useNavigate();
+  const inputRef = useRef<InputRef>(null);
+  const buttonRefs = useRef<HTMLButtonElement[]>([]);
+  const [focusIndex, setFocusIndex] = useState(-1);
+  const [keyword, setKeyword] = useState('');
+  const [menuListFilter, setMenuListFilter] = useState<Route[]>([]);
+  const flatRoutes = flattenRoute(authRoutes);
 
   useEffect(() => {
     if (focusIndex > -1) {
-      buttonRefs.current[focusIndex].focus()
+      buttonRefs.current[focusIndex].focus();
     }
-  }, [focusIndex])
+  }, [focusIndex]);
 
   useHotkey({
     hotkey: 'down',
@@ -41,13 +41,13 @@ const SearchContent = (props: SearchContentProps) => {
       if (buttonRefs.current.length > 0) {
         setFocusIndex(prev => {
           if (prev < buttonRefs.current.length - 1) {
-            return prev + 1
+            return prev + 1;
           }
-          return 0
-        })
+          return 0;
+        });
       }
-    }
-  })
+    },
+  });
 
   useHotkey({
     hotkey: 'up',
@@ -55,79 +55,79 @@ const SearchContent = (props: SearchContentProps) => {
       if (buttonRefs.current.length > 0) {
         setFocusIndex(prev => {
           if (prev > 0) {
-            return prev - 1
+            return prev - 1;
           }
-          return buttonRefs.current.length - 1
-        })
+          return buttonRefs.current.length - 1;
+        });
       }
-    }
-  })
+    },
+  });
 
   useHotkey({
     hotkey: 'enter',
     callback: () => {
       if (buttonRefs.current.length > 0) {
-        buttonRefs.current[focusIndex].click()
+        buttonRefs.current[focusIndex].click();
       }
-    }
-  })
+    },
+  });
 
   const classNamesForSearchResultItem = classnames(
     'block',
     'px-2 py-1',
     'rounded',
     'cursor-pointer select-none',
-    'focus:bg-indigo-500 focus:text-white focus:outline-none focus:ring-2 focus:ring-indigo-200'
-  )
+    'focus:bg-indigo-500 focus:text-white focus:outline-none focus:ring-2 focus:ring-indigo-200',
+  );
 
   const resetFocusIndex = () => {
-    setFocusIndex(-1)
-  }
+    setFocusIndex(-1);
+  };
 
   const resetAll = () => {
-    setKeyword('')
-    setMenuListFilter([])
-    resetFocusIndex()
-    setClose()
-  }
+    setKeyword('');
+    setMenuListFilter([]);
+    resetFocusIndex();
+    setClose();
+  };
 
   const selectRoute = (route: Route) => {
-    navigate(route.path!)
-    resetAll()
-  }
+    navigate(route.path!);
+    resetAll();
+  };
 
   const handleOpenChange = (open: boolean) => {
     if (open) {
-      inputRef.current!.focus()
+      inputRef.current!.focus();
     }
-  }
+  };
 
   const handleInputKeydown = (e: KeyboardEvent<HTMLInputElement>) => {
     // 回车或者下
     if (e.key === 'Enter' || e.key === 'ArrowDown') {
-      e.preventDefault()
-      inputRef.current!.blur()
+      e.preventDefault();
+      inputRef.current!.blur();
       if (menuListFilter.length) {
-        setFocusIndex(0)
+        setFocusIndex(0);
       }
     }
-  }
+  };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setKeyword(e.target.value)
+    setKeyword(e.target.value);
     if (e.target.value) {
       const filter = flatRoutes.filter(item => {
-        return item?.meta?.title?.toLowerCase().includes(e.target.value)
-      })
-      setMenuListFilter(filter)
+        return item?.meta?.title?.toLowerCase().includes(e.target.value);
+      });
+      setMenuListFilter(filter);
     } else {
-      setMenuListFilter([])
+      setMenuListFilter([]);
     }
-  }
+  };
 
   const handleInputFocus = () => {
-    resetFocusIndex()
-  }
+    resetFocusIndex();
+  };
 
   return (
     <Modal
@@ -188,7 +188,7 @@ const SearchContent = (props: SearchContentProps) => {
                     >
                       <div className="text-sm">{item?.meta?.title}</div>
                     </button>
-                  )
+                  );
                 })}
               </section>
             </OverlayScrollbarsComponent>
@@ -200,7 +200,7 @@ const SearchContent = (props: SearchContentProps) => {
         ) : null}
       </div>
     </Modal>
-  )
-}
+  );
+};
 
-export default SearchContent
+export default SearchContent;

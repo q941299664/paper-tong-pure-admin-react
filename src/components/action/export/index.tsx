@@ -1,5 +1,5 @@
-import Core from '../core'
-import type { CoreProps } from '../core'
+import Core from '../core';
+import type { CoreProps } from '../core';
 
 export interface ExportProps extends CoreProps {}
 
@@ -8,7 +8,7 @@ const Export = (props: ExportProps) => {
     <Core icon="icon-park-outline:download-two" {...props}>
       导出
     </Core>
-  )
-}
+  );
+};
 
-export default Export
+export default Export;

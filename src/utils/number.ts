@@ -1,11 +1,11 @@
-import { isFinite, isString } from 'lodash-es'
+import { isFinite, isString } from 'lodash-es';
 
 /**
  * 数字转换为千分位字符串形式
  * @param number
  */
 export function numberFormatThousand(number: number) {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 /**
@@ -13,7 +13,7 @@ export function numberFormatThousand(number: number) {
  * @param source
  */
 export function isResolvableNumber(source: any) {
-  return isString(source) ? isFinite(Number(source)) : isFinite(source)
+  return isString(source) ? isFinite(Number(source)) : isFinite(source);
 }
 
 /**
@@ -23,7 +23,7 @@ export function isResolvableNumber(source: any) {
  * @returns 解析结果或 defaultValue
  */
 export function numberResolve(source: number, defaultValue: number) {
-  return isResolvableNumber(source) ? Number(source) : defaultValue
+  return isResolvableNumber(source) ? Number(source) : defaultValue;
 }
 
 /**
@@ -37,15 +37,15 @@ export function numberFormat(
   source: number,
   decimalCount = 0,
   round = false,
-  defaultValue: number
+  defaultValue: number,
 ) {
-  const resolved = numberResolve(source, defaultValue)
-  if (!isResolvableNumber(resolved)) return ''
-  const precision = Math.pow(10, decimalCount)
+  const resolved = numberResolve(source, defaultValue);
+  if (!isResolvableNumber(resolved)) return '';
+  const precision = Math.pow(10, decimalCount);
   const roundedNum = round
     ? Math.round(resolved * precision) / precision
-    : Math.floor(resolved * precision) / precision
-  return roundedNum.toFixed(decimalCount)
+    : Math.floor(resolved * precision) / precision;
+  return roundedNum.toFixed(decimalCount);
 }
 
 // console.log(numberFormat(1          , 1            ) === '1.0')
@@ -65,7 +65,7 @@ export function numberFormat(
 // console.log(numberFormat('undefined', 1, false, 'A') === ''   )
 
 export function getNumberDecimal(number: number) {
-  if (!isFinite(number)) return 0
-  const decimal = number.toString().split('.')[1]
-  return decimal ? decimal.length : 0
+  if (!isFinite(number)) return 0;
+  const decimal = number.toString().split('.')[1];
+  return decimal ? decimal.length : 0;
 }

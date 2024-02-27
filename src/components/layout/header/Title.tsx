@@ -1,22 +1,22 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import Icon from '@/components/icon'
-import { authRoutes } from '@/router/routes'
-import { searchRoute } from '@/utils/route'
+import Icon from '@/components/icon';
+import { authRoutes } from '@/router/routes';
+import { searchRoute } from '@/utils/route';
 
 const Title = () => {
-  const { pathname } = useLocation()
-  const navigate = useNavigate()
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
-  const isHomePage = ['home', 'dashboard-home'].includes(pathname)
-  const canBack = !/.+\/list$/.test(pathname)
-  const currentRoute = searchRoute(pathname, authRoutes)
+  const isHomePage = ['home', 'dashboard-home'].includes(pathname);
+  const canBack = !/.+\/list$/.test(pathname);
+  const currentRoute = searchRoute(pathname, authRoutes);
 
   const back = () => {
     if (canBack) {
-      navigate(-1)
+      navigate(-1);
     }
-  }
+  };
 
   return (
     !isHomePage && (
@@ -35,7 +35,7 @@ const Title = () => {
         )}
       </div>
     )
-  )
-}
+  );
+};
 
-export default Title
+export default Title;

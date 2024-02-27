@@ -1,6 +1,6 @@
-import LayoutApp from '@/layout/LayoutApp'
-import Upload from '@/pages/Upload'
-import type { Route } from '@/types/router'
+import LayoutApp from '@/layout/LayoutApp';
+import Upload from '@/pages/Upload';
+import type { Route } from '@/types/router';
 
 const DashboardRoutes: Route[] = [
   {
@@ -9,7 +9,7 @@ const DashboardRoutes: Route[] = [
       title: 'Dashboard',
       key: 'dashboard',
       icon: 'icon-park-outline:dashboard',
-      index: 1
+      index: 1,
     },
     element: <LayoutApp />,
     children: [
@@ -18,19 +18,19 @@ const DashboardRoutes: Route[] = [
         element: <div>Dashboard</div>,
         meta: {
           title: 'ChildDashboard',
-          icon: 'icon-park-outline:dashboard'
-        }
+          icon: 'icon-park-outline:dashboard',
+        },
       },
       {
         path: '/dashboard/upload',
         element: <Upload />,
         meta: {
           title: 'Upload',
-          icon: 'icon-park-outline:upload'
-        }
-      }
-    ]
-  }
-]
+          icon: 'icon-park-outline:upload',
+        },
+      },
+    ],
+  },
+];
 
-export default DashboardRoutes
+export default DashboardRoutes;

@@ -1,33 +1,33 @@
-import { Menu } from 'antd'
-import type { MenuProps } from 'antd'
-import 'overlayscrollbars/overlayscrollbars.css'
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
-import { useEffect, useState } from 'react'
-import type { CSSProperties } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Menu } from 'antd';
+import type { MenuProps } from 'antd';
+import 'overlayscrollbars/overlayscrollbars.css';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+import { useEffect, useState } from 'react';
+import type { CSSProperties } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import Icon from '@/components/icon'
-import { authRoutes } from '@/router/routes'
-import { scrollbarOptions } from '@/utils/overlayscrollbars'
-import { getOpenKeys } from '@/utils/route'
+import Icon from '@/components/icon';
+import { authRoutes } from '@/router/routes';
+import { scrollbarOptions } from '@/utils/overlayscrollbars';
+import { getOpenKeys } from '@/utils/route';
 
-import { SIDEBAR_WIDTH } from '../constants'
+import { SIDEBAR_WIDTH } from '../constants';
 
 const Sidebar = () => {
-  const { pathname } = useLocation()
-  const navigate = useNavigate()
-  const [openKeys, setOpenKeys] = useState<string[]>(getOpenKeys(pathname))
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const [openKeys, setOpenKeys] = useState<string[]>(getOpenKeys(pathname));
 
   const sideBarStyle: CSSProperties = {
-    width: SIDEBAR_WIDTH
-  }
+    width: SIDEBAR_WIDTH,
+  };
 
   useEffect(() => {
-    setOpenKeys(getOpenKeys(pathname))
-  }, [pathname])
+    setOpenKeys(getOpenKeys(pathname));
+  }, [pathname]);
 
   const items: MenuProps['items'] = authRoutes.map((route, i) => {
-    const key = route.path || String(i)
+    const key = route.path || String(i);
 
     return {
       key,
@@ -45,19 +45,19 @@ const Sidebar = () => {
               <Icon icon={child.meta.icon} />
             </div>
           ) : null,
-          label: child.meta?.title
-        }
-      })
-    }
-  })
+          label: child.meta?.title,
+        };
+      }),
+    };
+  });
 
   const onClick: MenuProps['onClick'] = ({ key }) => {
-    navigate(key)
-  }
+    navigate(key);
+  };
 
   const onOpenChange: MenuProps['onOpenChange'] = keys => {
-    setOpenKeys(keys)
-  }
+    setOpenKeys(keys);
+  };
 
   return (
     <div
@@ -75,7 +75,7 @@ const Sidebar = () => {
         />
       </OverlayScrollbarsComponent>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

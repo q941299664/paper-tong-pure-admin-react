@@ -1,17 +1,17 @@
-import hotkeys from 'hotkeys-js'
-import { useCallback, useEffect } from 'react'
+import hotkeys from 'hotkeys-js';
+import { useCallback, useEffect } from 'react';
 
 interface HotkeyParams {
-  hotkey: string
-  callback: () => void
+  hotkey: string;
+  callback: () => void;
 }
 
 export const useHotkey = ({ hotkey, callback }: HotkeyParams) => {
-  const cb = useCallback(callback, [callback])
+  const cb = useCallback(callback, [callback]);
   useEffect(() => {
-    hotkeys(hotkey, cb)
+    hotkeys(hotkey, cb);
     return () => {
-      hotkeys.unbind(hotkey, cb)
-    }
-  }, [hotkey, cb])
-}
+      hotkeys.unbind(hotkey, cb);
+    };
+  }, [hotkey, cb]);
+};

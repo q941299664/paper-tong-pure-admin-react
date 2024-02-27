@@ -1,26 +1,26 @@
-import { useThrottleEffect } from 'ahooks'
-import throttleByAnimationFrame from 'antd/lib/_util/throttleByAnimationFrame'
-import { useRef } from 'react'
-import { useWindowSize } from 'react-use'
+import { useThrottleEffect } from 'ahooks';
+import throttleByAnimationFrame from 'antd/lib/_util/throttleByAnimationFrame';
+import { useRef } from 'react';
+import { useWindowSize } from 'react-use';
 
 export interface AffixRef {
-  updatePosition: ReturnType<typeof throttleByAnimationFrame>
+  updatePosition: ReturnType<typeof throttleByAnimationFrame>;
 }
 
 export const useAffixAutoUpdate = () => {
-  const affixRef = useRef<AffixRef>(null)
-  const { width } = useWindowSize()
+  const affixRef = useRef<AffixRef>(null);
+  const { width } = useWindowSize();
 
   const updatePosition = () => {
-    affixRef.current?.updatePosition()
-  }
+    affixRef.current?.updatePosition();
+  };
 
   useThrottleEffect(updatePosition, [width], {
-    wait: 300
-  })
+    wait: 300,
+  });
 
   return {
     affixRef,
-    updatePosition
-  }
-}
+    updatePosition,
+  };
+};

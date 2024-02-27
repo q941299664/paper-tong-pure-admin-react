@@ -1,5 +1,5 @@
-import Core from '../core'
-import type { CoreProps } from '../core'
+import Core from '../core';
+import type { CoreProps } from '../core';
 
 export interface SubmitProps extends CoreProps {}
 
@@ -8,7 +8,7 @@ const Submit = (props: SubmitProps) => {
     <Core icon="icon-park-outline:search" htmlType="submit" {...props}>
       查询
     </Core>
-  )
-}
+  );
+};
 
-export default Submit
+export default Submit;

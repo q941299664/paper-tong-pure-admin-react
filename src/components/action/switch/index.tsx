@@ -1,5 +1,5 @@
-import Core from '../core'
-import type { CoreProps } from '../core'
+import Core from '../core';
+import type { CoreProps } from '../core';
 
 export interface SwitchProps extends CoreProps {}
 
@@ -8,7 +8,7 @@ const Switch = (props: SwitchProps) => {
     <Core icon="icon-park-outline:switch" {...props}>
       切换
     </Core>
-  )
-}
+  );
+};
 
-export default Switch
+export default Switch;

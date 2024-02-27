@@ -1,3 +1,3 @@
 export interface LayoutAffixRef {
-  updatePosition: () => void
+  updatePosition: () => void;
 }

@@ -1,4 +1,4 @@
-import { LayoutBody, LayoutHeader, LayoutSidebar } from '@/components/layout'
+import { LayoutBody, LayoutHeader, LayoutSidebar } from '@/components/layout';
 
 const LayoutApp = () => {
   return (
@@ -7,7 +7,7 @@ const LayoutApp = () => {
       <LayoutSidebar />
       <LayoutBody />
     </>
-  )
-}
+  );
+};
 
-export default LayoutApp
+export default LayoutApp;
