@@ -1,6 +1,8 @@
 import { useResponsive, useSize } from 'ahooks'
 import type { MenuProps } from 'antd'
+import qs from 'qs'
 import { useRef } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { ActionCore, ActionDelete } from '@/components/action'
 import ActionDropdown from '@/components/action/dropdown'
@@ -23,6 +25,16 @@ const items: MenuProps['items'] = [
 ]
 
 const Upload = () => {
+  const { search } = useLocation()
+  const navigate = useNavigate()
+
+  // setTimeout(() => {
+  //   navigate('/dashboard/index', { state: { bridge: '123456' } })
+  // }, 3000)
+  const query = new URLSearchParams(search)
+  const bridgeID = query.get('bridge')
+  console.log(query)
+  console.log(bridgeID)
   const divRef = useRef<HTMLDivElement>(null)
   const size = useSize(divRef)
   const responsive = useResponsive()
