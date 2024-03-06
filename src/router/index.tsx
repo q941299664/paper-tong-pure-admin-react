@@ -1,9 +1,9 @@
-import { useRoutes } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom'
 
-import { rootRoutes } from './routes';
+import { rootRoutes } from './routes'
 
 const Router = () => {
-  return useRoutes(rootRoutes);
-};
+  return useRoutes(rootRoutes)
+}
 
-export default Router;
+export default Router

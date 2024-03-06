@@ -1,4 +1,4 @@
-import './Wave.scss';
+import './Wave.scss'
 
 const Wave = () => {
   return (
@@ -23,7 +23,7 @@ const Wave = () => {
         <use xlinkHref="#gentle-wave" x="48" y="7" fill="#fff" />
       </g>
     </svg>
-  );
-};
+  )
+}
 
-export default Wave;
+export default Wave

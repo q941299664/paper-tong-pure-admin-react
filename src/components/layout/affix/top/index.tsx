@@ -1,46 +1,46 @@
-import { Affix } from 'antd';
-import classnames from 'classnames';
-import { forwardRef, useEffect, useImperativeHandle } from 'react';
-import type { ReactNode } from 'react';
+import { Affix } from 'antd'
+import classnames from 'classnames'
+import { forwardRef, useEffect, useImperativeHandle } from 'react'
+import type { ReactNode } from 'react'
 
-import { HEADER_HEIGHT } from '../../constants';
-import type { LayoutAffixRef } from '../types.ts';
-import { useLayoutDashboardAffix } from '../useLayoutDashboardAffix';
+import { HEADER_HEIGHT } from '../../constants'
+import type { LayoutAffixRef } from '../types.ts'
+import { useLayoutDashboardAffix } from '../useLayoutDashboardAffix'
 
 export interface AffixTopProps {
-  children: ReactNode;
-  onHeightChange?: (height: number) => void;
+  children: ReactNode
+  onHeightChange?: (height: number) => void
 }
 
 const AffixTop = forwardRef<LayoutAffixRef, AffixTopProps>((props, ref) => {
-  const { children, onHeightChange } = props;
+  const { children, onHeightChange } = props
 
   const { affixed, affixRef, wrapperRef, updatePosition, size, onChange } =
-    useLayoutDashboardAffix();
+    useLayoutDashboardAffix()
 
   useImperativeHandle(
     ref,
     () => {
       return {
-        updatePosition,
-      };
+        updatePosition
+      }
     },
-    [updatePosition],
-  );
+    [updatePosition]
+  )
 
   useEffect(() => {
     if (size?.height && size.height > 0 && onHeightChange) {
-      onHeightChange(size.height);
+      onHeightChange(size.height)
     }
-  }, [size, onHeightChange]);
+  }, [size, onHeightChange])
 
   const wrapperClassnames = classnames('border-gray-200', {
-    'bg-white border-b': affixed,
-  });
+    'bg-white border-b': affixed
+  })
 
   const wrapperStyle = {
-    boxShadow: affixed ? '0px 5px 10px rgba(209 213 219 / 0.1)' : 'none',
-  };
+    boxShadow: affixed ? '0px 5px 10px rgba(209 213 219 / 0.1)' : 'none'
+  }
 
   return (
     <Affix ref={affixRef} offsetTop={HEADER_HEIGHT} onChange={onChange}>
@@ -48,7 +48,7 @@ const AffixTop = forwardRef<LayoutAffixRef, AffixTopProps>((props, ref) => {
         <div className="px-6 py-4">{children}</div>
       </div>
     </Affix>
-  );
-});
+  )
+})
 
-export default AffixTop;
+export default AffixTop

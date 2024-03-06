@@ -1,5 +1,5 @@
 const CrudContainer = () => {
-  return <div></div>;
-};
+  return <div></div>
+}
 
-export default CrudContainer;
+export default CrudContainer

@@ -1,64 +1,64 @@
-import { flatMap, omit } from 'lodash-es';
-import { resolvePath } from 'react-router-dom';
+import { flatMap, omit } from 'lodash-es'
+import { resolvePath } from 'react-router-dom'
 
-import type { Route } from '@/types/router';
+import type { Route } from '@/types/router'
 
 export function searchRoute(pathname: string, routes: Route[]): Route {
-  let result: Route = {};
+  let result: Route = {}
   for (const route of routes) {
-    if (route.path === pathname) return route;
+    if (route.path === pathname) return route
 
     if (route.children) {
-      const res = searchRoute(pathname, route.children);
-      if (Object.keys(res).length > 0) result = res;
+      const res = searchRoute(pathname, route.children)
+      if (Object.keys(res).length > 0) result = res
     }
   }
 
-  return result;
+  return result
 }
 
 export function flattenRoute(routes: Route[]): Route[] {
   return flatMap(routes, route => {
     if (route.children) {
-      return [omit(route, ['children']), ...flattenRoute(route.children)];
+      return [omit(route, ['children']), ...flattenRoute(route.children)]
     }
-    return [route];
-  });
+    return [route]
+  })
 }
 
 export function normalizeRoute(routes: Route[], isSort = true): Route[] {
-  const result: Route[] = [];
+  const result: Route[] = []
 
   for (const route of routes) {
     if (route.children) {
       route.children.forEach(child => {
-        child.path = resolvePath(child.path!, route.path).pathname;
-      });
+        child.path = resolvePath(child.path!, route.path).pathname
+      })
       result.push({
         ...route,
-        children: normalizeRoute(route.children, false),
-      });
+        children: normalizeRoute(route.children, false)
+      })
     } else {
-      result.push(route);
+      result.push(route)
     }
   }
   if (isSort) {
     result.sort((a, b) => {
-      return (a.meta?.index || 0) - (b.meta?.index || 0);
-    });
+      return (a.meta?.index || 0) - (b.meta?.index || 0)
+    })
   }
 
-  return result;
+  return result
 }
 
 export function getOpenKeys(path: string): string[] {
-  let i = 1;
-  const arr: string[] = [];
+  let i = 1
+  const arr: string[] = []
   for (;;) {
-    i = path.indexOf('/', i);
-    if (i === -1) break;
-    arr.push(path.slice(0, i));
-    i = i + 1;
+    i = path.indexOf('/', i)
+    if (i === -1) break
+    arr.push(path.slice(0, i))
+    i = i + 1
   }
-  return arr;
+  return arr
 }

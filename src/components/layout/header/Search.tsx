@@ -1,25 +1,25 @@
-import { useState } from 'react';
+import { useState } from 'react'
 
-import Icon from '@/components/icon';
-import { useHotkey } from '@/hooks/useHotkey';
-import { isMacOS, isWindows } from '@/utils/browser';
+import Icon from '@/components/icon'
+import { useHotkey } from '@/hooks/useHotkey'
+import { isMacOS, isWindows } from '@/utils/browser'
 
-import SearchContent from './SearchContent';
+import SearchContent from './SearchContent'
 
 const Search = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
-  const hotkeyTip = isMacOS ? '⌘ + K' : isWindows ? 'Ctrl + K' : '';
-  const hotkey = isMacOS ? 'command+k' : isWindows ? 'ctrl+k' : '';
+  const hotkeyTip = isMacOS ? '⌘ + K' : isWindows ? 'Ctrl + K' : ''
+  const hotkey = isMacOS ? 'command+k' : isWindows ? 'ctrl+k' : ''
 
   const handleClick = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   useHotkey({
     hotkey,
-    callback: handleClick,
-  });
+    callback: handleClick
+  })
 
   return (
     <>
@@ -33,7 +33,7 @@ const Search = () => {
       </div>
       <SearchContent open={open} setClose={() => setOpen(false)} />
     </>
-  );
-};
+  )
+}
 
-export default Search;
+export default Search

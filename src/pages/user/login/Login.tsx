@@ -1,23 +1,23 @@
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Form, Input } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { LockOutlined, UserOutlined } from '@ant-design/icons'
+import { Button, Form, Input } from 'antd'
+import { useNavigate } from 'react-router-dom'
 
-import { userLoginApi } from '@/api/user';
+import { userLoginApi } from '@/api/user'
 
-import Wave from '@/components/login/wave/Wave';
-import { setUserInfo } from '@/stores';
-import type { LoginData } from '@/types/user';
+import Wave from '@/components/login/wave/Wave'
+import { setUserInfo } from '@/stores'
+import type { LoginData } from '@/types/user'
 
-import './Login.scss';
+import './Login.scss'
 
 const Login = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const onFinish = async (values: LoginData) => {
-    const result = await userLoginApi(values);
-    setUserInfo(result);
-    navigate('/', { replace: true });
-  };
+    const result = await userLoginApi(values)
+    setUserInfo(result)
+    navigate('/', { replace: true })
+  }
 
   return (
     <div className="relative header">
@@ -33,7 +33,7 @@ const Login = () => {
               size="large"
               initialValues={{
                 email: 'a-admin@example.com',
-                password: 'password',
+                password: 'password'
               }}
               onFinish={onFinish}
             >
@@ -41,7 +41,7 @@ const Login = () => {
                 name="email"
                 rules={[
                   { required: true, message: 'Please enter the Email' },
-                  { type: 'email', message: 'Please enter the correct Email' },
+                  { type: 'email', message: 'Please enter the correct Email' }
                 ]}
               >
                 <Input
@@ -55,8 +55,8 @@ const Login = () => {
                   { required: true, message: 'Please enter the password' },
                   {
                     min: 6,
-                    message: 'The password must be at least 6 characters',
-                  },
+                    message: 'The password must be at least 6 characters'
+                  }
                 ]}
               >
                 <Input.Password
@@ -75,7 +75,7 @@ const Login = () => {
       </div>
       <Wave />
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

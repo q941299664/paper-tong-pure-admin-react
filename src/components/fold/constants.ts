@@ -3,5 +3,5 @@ export enum DisplayName {
   Default = 'Fold.Default',
   Collapsed = 'Fold.Collapsed',
   Left = 'Fold.Left',
-  Right = 'Fold.Right',
+  Right = 'Fold.Right'
 }
