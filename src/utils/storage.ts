@@ -1,4 +1,4 @@
-const storagePrefix = 'a-admin'
+const storagePrefix = 'easy-admin'
 
 export const storage = {
   set(key: string, value: string) {

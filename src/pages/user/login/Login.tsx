@@ -32,7 +32,7 @@ const Login = () => {
               labelCol={{ span: 5 }}
               size="large"
               initialValues={{
-                email: 'a-admin@example.com',
+                email: 'easy-admin@example.com',
                 password: 'password'
               }}
               onFinish={onFinish}
