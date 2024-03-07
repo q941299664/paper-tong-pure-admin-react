@@ -24,7 +24,7 @@ const Login = () => {
       <div className="flex flex-col items-center justify-center w-screen py-10 min-h-[80vh]">
         <div className="space-y-8">
           <div className="space-y-4">
-            <div className="text-4xl text-center text-white">A Admin</div>
+            <div className="text-4xl text-center text-white">Easy Admin</div>
           </div>
           <div className="p-4 transition-all border shadow rounded-xl hover:shadow-2xl w-80 bg-white/80">
             <Form
