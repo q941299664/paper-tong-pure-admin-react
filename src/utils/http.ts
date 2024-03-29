@@ -11,7 +11,7 @@ export const http = Axios.create({
 http.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   const token = storage.get('token')
 
-  if (token) config.headers.token = `token`
+  if (token) config.headers.authorization = `Bearer ${token}`
 
   return config
 })
@@ -19,7 +19,7 @@ http.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 http.interceptors.response.use(
   config => {
     const { data } = config
-    if (data.code === 0) {
+    if (data.code >= 200 && data.code < 300) {
       return data.data
     } else {
       message.error(data.message)

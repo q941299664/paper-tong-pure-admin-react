@@ -1,11 +1,11 @@
-import type { LoginData, UserInfo, UserInfoRes } from '@/types/user'
+import type { LoginData, LoginRes, UserInfoRes } from '@/types/user'
 import { http } from '@/utils/http'
 
-export const userLoginApi = (data: LoginData): Promise<UserInfo> => {
+export const userLoginApi = (data: LoginData): Promise<LoginRes> => {
   return http({
-    url: '/login',
-    method: 'get',
-    params: data
+    url: '/user/admin/login',
+    method: 'post',
+    data
   })
 }
 

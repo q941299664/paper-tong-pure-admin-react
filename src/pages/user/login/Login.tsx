@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { userLoginApi } from '@/api/user'
 
 import Wave from '@/components/login/wave/Wave'
-import { setUserInfo } from '@/stores'
+import { setToken, setUserInfo } from '@/stores'
 import type { LoginData } from '@/types/user'
 
 import './Login.scss'
@@ -15,7 +15,12 @@ const Login = () => {
 
   const onFinish = async (values: LoginData) => {
     const result = await userLoginApi(values)
-    setUserInfo(result)
+    console.log(result)
+    setToken({
+      accessToken: result.accessToken,
+      refreshToken: result.refreshToken
+    })
+    setUserInfo(result.userInfo)
     navigate('/', { replace: true })
   }
 
@@ -32,20 +37,17 @@ const Login = () => {
               labelCol={{ span: 5 }}
               size="large"
               initialValues={{
-                email: 'easy-admin@example.com',
-                password: 'password'
+                username: 'admin',
+                password: '123456'
               }}
               onFinish={onFinish}
             >
               <Form.Item
-                name="email"
-                rules={[
-                  { required: true, message: 'Please enter the Email' },
-                  { type: 'email', message: 'Please enter the correct Email' }
-                ]}
+                name="username"
+                rules={[{ required: true, message: 'Please enter the username' }]}
               >
                 <Input
-                  placeholder="Username"
+                  placeholder="username"
                   prefix={<UserOutlined style={{ color: '#D9D9D9' }} />}
                 />
               </Form.Item>
