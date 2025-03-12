@@ -84,7 +84,7 @@ export default function AuthGuard({
     permission: menuPermissions,
     permissionType: MENU_TYPE.MENU,
   })) {
-    return <Navigate to="/403" replace />
+    return <Navigate to="/exception/403" replace />
   }
 
   return <>{children}</>

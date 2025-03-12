@@ -8,15 +8,23 @@ interface RouteMeta {
   [key: string]: unknown
 }
 
-interface RouteMetaConfig {
+interface Route {
   name: string
   path?: string
   meta?: RouteMeta
-  children?: RouteMetaConfig[]
+  children?: Route[]
 }
 
-const routeMetaConfig: RouteMetaConfig[] = [
+const routeMetaConfig: Route[] = [
   { name: '登录', path: '/login', meta: { public: true, layout: 'blank' } },
+  {
+    name: '异常',
+    children: [
+      { name: '403', path: '/exception/403', meta: { layout: 'blank' } },
+      { name: '404', path: '/exception/404', meta: { layout: 'blank' } },
+      { name: '500', path: '/exception/500', meta: { layout: 'blank' } },
+    ],
+  },
   {
     name: '系统设置',
     children: [
@@ -28,7 +36,7 @@ const routeMetaConfig: RouteMetaConfig[] = [
   },
 ]
 
-const flatMetaRoutes = flattenTree<RouteMetaConfig>(routeMetaConfig)
+const flatMetaRoutes = flattenTree(routeMetaConfig)
 
 export function getRouteMeta(path: string) {
   const routeItem = flatMetaRoutes.find(item => path === item.path)
