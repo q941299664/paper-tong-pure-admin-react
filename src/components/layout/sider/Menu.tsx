@@ -45,7 +45,7 @@ export default function Menu() {
         ...(item.parentId ? { title } : {}),
       }
     })
-  }, [userMenus])
+  }, [userMenus, t])
 
   const handleClick: MenuProps['onClick'] = ({ key }) => {
     const selectedItem = flatUserMenus.find(item => item.id.toString() === key)
