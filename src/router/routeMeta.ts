@@ -1,14 +1,31 @@
+import { API, MENU, ROLE, USER } from '../constants/permissions'
 import { flattenTree } from '../utils/array'
+
+// 基础元数据类型
+interface RouteMeta {
+  layout?: 'blank' | 'default'
+  public?: boolean
+  [key: string]: unknown
+}
 
 interface RouteMetaConfig {
   name: string
-  path: string
-  meta: Record<string, any>
+  path?: string
+  meta?: RouteMeta
   children?: RouteMetaConfig[]
 }
 
 const routeMetaConfig: RouteMetaConfig[] = [
-  { name: '登录', path: '/login', meta: { public: true } },
+  { name: '登录', path: '/login', meta: { public: true, layout: 'blank' } },
+  {
+    name: '系统设置',
+    children: [
+      { name: '用户管理', path: '/system/user', meta: { permission: USER.READ } },
+      { name: '角色管理', path: '/system/role', meta: { permission: ROLE.READ } },
+      { name: '菜单管理', path: '/system/menu', meta: { permission: MENU.READ } },
+      { name: 'API管理', path: '/system/api', meta: { permission: API.READ } },
+    ],
+  },
 ]
 
 const flatMetaRoutes = flattenTree<RouteMetaConfig>(routeMetaConfig)
@@ -19,4 +36,6 @@ export function getRouteMeta(path: string) {
   if (routeItem && routeItem.meta) {
     return routeItem.meta
   }
+
+  return null
 }

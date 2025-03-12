@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { flushSync } from 'react-dom'
 import { useShallow } from 'zustand/react/shallow'
 
 import { useAppStore } from '@/stores'
@@ -88,22 +89,20 @@ export function useAnimateTheme(options: UseAnimateThemeOptions = {}) {
 
     document.documentElement.classList.add('stop-transition')
 
-    const transition = await (document as any).startViewTransition(async () => {
-      toggleTheme()
-      // 等待一帧以确保DOM已更新
-      await new Promise(requestAnimationFrame)
-    })
-
-    await transition.ready
+    await document.startViewTransition(async () => {
+      flushSync(() => {
+        toggleTheme()
+      })
+    }).ready
 
     const animation = document.documentElement.animate(
       {
-        clipPath: isDark ? clipPath.reverse() : clipPath,
+        clipPath: isDark ? clipPath : clipPath.reverse(),
       },
       {
         duration,
         easing,
-        pseudoElement: `::view-transition-${isDark ? 'old' : 'new'}(root)`,
+        pseudoElement: `::view-transition-${isDark ? 'new' : 'old'}(root)`,
       },
     )
 

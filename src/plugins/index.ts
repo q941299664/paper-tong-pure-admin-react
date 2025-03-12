@@ -1,0 +1,1 @@
+export { setupIconifyOffline } from './iconify'

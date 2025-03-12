@@ -1,19 +1,24 @@
-import { useEffect } from 'react'
-import { useLocation, useNavigate, useRoutes } from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import routes from '~react-pages'
 
-import { getRouteMeta } from './routeMeta'
+import { Layout } from '@/layouts'
+
+const rootRoutes = [
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      ...routes,
+      {
+        path: '*',
+        element: <Navigate to="/exception/404" replace />,
+      },
+    ],
+  },
+]
 
 export default function Router() {
-  const location = useLocation()
-  const navigate = useNavigate()
+  const router = createBrowserRouter(rootRoutes)
 
-  useEffect(() => {
-    const meta = getRouteMeta(location.pathname)
-    console.log('route')
-    console.log(meta)
-    console.log('route')
-  }, [location, navigate])
-
-  return useRoutes(routes)
+  return <RouterProvider router={router} />
 }

@@ -6,10 +6,12 @@ import 'virtual:uno.css'
 import 'virtual:local-icons'
 
 import { setupI18n } from '@/locales'
+import { setupIconifyOffline } from '@/plugins'
 
 import App from './App.tsx'
 
 setupI18n()
+setupIconifyOffline()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
