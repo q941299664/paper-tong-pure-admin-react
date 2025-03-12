@@ -1,5 +1,30 @@
 export default function Index() {
   return (
-    <div>index</div>
+    <>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+      <div>index</div>
+    </>
   )
 }
