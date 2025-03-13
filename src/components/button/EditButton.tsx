@@ -1,8 +1,10 @@
 import { useTranslation } from 'react-i18next'
 
+import type { ButtonProps } from './Button'
+
 import Button from './Button'
 
-interface EditButtonProps {
+interface EditButtonProps extends ButtonProps {
   noText?: boolean
 }
 
