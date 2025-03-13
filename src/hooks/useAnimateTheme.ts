@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 import { useShallow } from 'zustand/react/shallow'
 
+import { useTransitionControl } from '@/contexts'
 import { useAppStore } from '@/stores'
 
 const isBrowser = typeof window !== 'undefined'
@@ -17,17 +18,17 @@ function injectBaseStyles() {
         html.stop-transition * {
           transition: none !important;
         }
-        ::view-transition-old(root),
-        ::view-transition-new(root) {
+        ::view-transition-old(theme-switch),
+        ::view-transition-new(theme-switch) {
           animation: none;
           mix-blend-mode: normal;
         }
-        ::view-transition-old(root),
-        .dark::view-transition-new(root) {
+        ::view-transition-old(theme-switch),
+        .dark::view-transition-new(theme-switch) {
           z-index: 1;
         }
-        ::view-transition-new(root),
-        .dark::view-transition-old(root) {
+        ::view-transition-new(theme-switch),
+        .dark::view-transition-old(theme-switch) {
           z-index: 9999;
         }
       `
@@ -54,6 +55,8 @@ export function useAnimateTheme(options: UseAnimateThemeOptions = {}) {
     })),
   )
 
+  const { disableRouteTransitions, enableRouteTransitions } = useTransitionControl()
+
   const [isLoading, setIsLoading] = useState(false)
   const triggerRef = useRef<HTMLButtonElement>(null)
 
@@ -78,6 +81,9 @@ export function useAnimateTheme(options: UseAnimateThemeOptions = {}) {
       return
     }
 
+    // 禁用路由过渡
+    disableRouteTransitions()
+
     const { top, left, width, height } = triggerRef.current.getBoundingClientRect()
     const x = left + width / 2
     const y = top + height / 2
@@ -87,31 +93,53 @@ export function useAnimateTheme(options: UseAnimateThemeOptions = {}) {
       `circle(${Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y))}px at ${x}px ${y}px)`,
     ]
 
+    document.documentElement.style.viewTransitionName = 'theme-switch'
     document.documentElement.classList.add('stop-transition')
 
-    await document.startViewTransition(async () => {
-      flushSync(() => {
-        toggleTheme()
-      })
-    }).ready
+    try {
+      await document.startViewTransition(async () => {
+        flushSync(() => {
+          toggleTheme()
+        })
+      }).ready
 
-    const animation = document.documentElement.animate(
-      {
-        clipPath: isDark ? clipPath : clipPath.reverse(),
-      },
-      {
-        duration,
-        easing,
-        pseudoElement: `::view-transition-${isDark ? 'new' : 'old'}(root)`,
-      },
-    )
+      const animation = document.documentElement.animate(
+        {
+          clipPath: isDark ? clipPath : clipPath.reverse(),
+        },
+        {
+          duration,
+          easing,
+          pseudoElement: `::view-transition-${isDark ? 'new' : 'old'}(theme-switch)`,
+        },
+      )
 
-    animation.addEventListener('finish', () => {
-      // 移除 stop-transition 类
+      // 清理函数
+      const cleanup = () => {
+        document.documentElement.classList.remove('stop-transition')
+        document.documentElement.style.viewTransitionName = ''
+
+        // 重新启用路由过渡
+        enableRouteTransitions()
+
+        setIsLoading(false)
+      }
+
+      animation.addEventListener('finish', cleanup, { once: true })
+      animation.addEventListener('cancel', cleanup, { once: true })
+    }
+    catch (error) {
+      console.error('主题切换动画出错:', error)
       document.documentElement.classList.remove('stop-transition')
+      document.documentElement.style.viewTransitionName = ''
+
+      enableRouteTransitions()
+
       setIsLoading(false)
-    }, { once: true })
-  }, [isDark, isLoading, duration, easing, toggleTheme])
+      // 回退到常规切换
+      toggleTheme()
+    }
+  }, [isDark, isLoading, duration, easing, toggleTheme, disableRouteTransitions, enableRouteTransitions])
 
   return {
     triggerRef,

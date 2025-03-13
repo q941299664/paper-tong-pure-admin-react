@@ -50,7 +50,7 @@ export default function Menu() {
   const handleClick: MenuProps['onClick'] = ({ key }) => {
     const selectedItem = flatUserMenus.find(item => item.id.toString() === key)
     if (selectedItem && selectedItem.path) {
-      navigate(selectedItem.path)
+      navigate(selectedItem.path, { viewTransition: true })
     }
   }
 

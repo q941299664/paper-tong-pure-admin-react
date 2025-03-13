@@ -5,6 +5,7 @@ import 'antd/dist/reset.css'
 import 'virtual:uno.css'
 import 'virtual:local-icons'
 
+import '@/assets/styles/page-transition.scss'
 import { setupI18n } from '@/locales'
 import { setupIconifyOffline } from '@/plugins'
 
