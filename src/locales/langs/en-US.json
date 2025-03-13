@@ -33,6 +33,10 @@
   },
   "component": {
     "chart": {
+      "common": {
+        "data": "Data",
+        "dataRatio": "Data Ratio"
+      },
       "kline": {
         "time": "Time",
         "open": "Open",

@@ -33,6 +33,10 @@
   },
   "component": {
     "chart": {
+      "common": {
+        "data": "数据",
+        "dataRatio": "数据占比"
+      },
       "kline": {
         "time": "时间",
         "open": "开盘",
