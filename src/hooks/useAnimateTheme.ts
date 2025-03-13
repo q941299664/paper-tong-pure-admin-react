@@ -18,17 +18,17 @@ function injectBaseStyles() {
         html.stop-transition * {
           transition: none !important;
         }
-        ::view-transition-old(theme-switch),
-        ::view-transition-new(theme-switch) {
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
           animation: none;
           mix-blend-mode: normal;
         }
-        ::view-transition-old(theme-switch),
-        .dark::view-transition-new(theme-switch) {
+        ::view-transition-old(root),
+        .dark::view-transition-new(root) {
           z-index: 1;
         }
-        ::view-transition-new(theme-switch),
-        .dark::view-transition-old(theme-switch) {
+        ::view-transition-new(root),
+        .dark::view-transition-old(root) {
           z-index: 9999;
         }
       `
@@ -93,7 +93,6 @@ export function useAnimateTheme(options: UseAnimateThemeOptions = {}) {
       `circle(${Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y))}px at ${x}px ${y}px)`,
     ]
 
-    document.documentElement.style.viewTransitionName = 'theme-switch'
     document.documentElement.classList.add('stop-transition')
 
     try {
@@ -110,7 +109,7 @@ export function useAnimateTheme(options: UseAnimateThemeOptions = {}) {
         {
           duration,
           easing,
-          pseudoElement: `::view-transition-${isDark ? 'new' : 'old'}(theme-switch)`,
+          pseudoElement: `::view-transition-${isDark ? 'new' : 'old'}(root)`,
         },
       )
 
