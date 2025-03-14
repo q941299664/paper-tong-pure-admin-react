@@ -83,6 +83,19 @@
       "forgotPassword": "忘记密码？",
       "login": "登录"
     },
+    "userCenter": {
+      "oldPassword": "旧密码",
+      "newPassword": "新密码",
+      "confirmPassword": "确认密码",
+      "success": "密码修改成功",
+      "rules": {
+        "oldPassword": "请输入旧密码",
+        "newPassword": "请输入新密码",
+        "confirmPassword": "请输入确认密码",
+        "passwordLength": "密码长度在6-16位之间",
+        "passwordNotMatch": "两次密码不一致"
+      }
+    },
     "forbidden": {
       "title": "403",
       "subTitle": "抱歉，您没有权限访问该页面。"

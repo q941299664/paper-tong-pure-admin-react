@@ -1,5 +1,4 @@
-// import messages from '@intlify/unplugin-vue-i18n/messages'
-import i18n from 'i18next'
+import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
 import { DEFAULT_LOCALE } from '@/constants/app'
@@ -18,10 +17,10 @@ const locales = {
   },
 }
 
-export const reactI18nextInstance = i18n.use(initReactI18next)
+export const i18n = i18next.use(initReactI18next)
 
 export async function setupI18n() {
-  await reactI18nextInstance.init({
+  await i18n.init({
     interpolation: {
       escapeValue: false,
     },

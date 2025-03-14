@@ -8,11 +8,12 @@ import { createRoot } from 'react-dom/client'
 
 import '@/assets/styles/page-transition.scss'
 import { setupI18n } from '@/locales'
-import { setupIconifyOffline } from '@/plugins'
+import { setupIconifyOffline, setupLoading } from '@/plugins'
 
 import App from './App.tsx'
 
 setupI18n()
+setupLoading()
 setupIconifyOffline()
 
 const queryClient = new QueryClient()

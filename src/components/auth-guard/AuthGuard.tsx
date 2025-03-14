@@ -6,6 +6,7 @@ import { useShallow } from 'zustand/react/shallow'
 
 import { MENU_TYPE } from '@/constants/menu'
 import { usePermission } from '@/hooks/usePermission'
+import { hideLoading } from '@/plugins'
 import { getRouteMeta } from '@/router/routeMeta'
 import { useUserStore } from '@/stores/userStore'
 
@@ -52,8 +53,10 @@ export default function AuthGuard({
   }, [isLogin, userInfo, fetchUserInfo])
 
   if (!hydrated) {
-    return <div>Loading...</div>
+    return null
   }
+
+  hideLoading()
 
   // 如果是公共路由，则直接放行
   if (routeMeta?.public) {
@@ -76,7 +79,7 @@ export default function AuthGuard({
 
   // 等待用户信息加载
   if (!userInfo) {
-    return <div>Loading...</div>
+    return null
   }
 
   // 权限检查

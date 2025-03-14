@@ -83,6 +83,19 @@
       "forgotPassword": "Forgot Password?",
       "login": "Login"
     },
+    "userCenter": {
+      "oldPassword": "Old Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "success": "Password modified successfully",
+      "rules": {
+        "oldPassword": "Please enter old password",
+        "newPassword": "Please enter new password",
+        "confirmPassword": "Please enter confirm password",
+        "passwordLength": "Password length must be between 6 and 16 characters",
+        "passwordNotMatch": "Passwords do not match"
+      }
+    },
     "forbidden": {
       "title": "403",
       "subTitle": "Sorry, you do not have permission to access this page."
