@@ -1,11 +1,11 @@
 import { Divider, Form, Input, Space, Table } from 'antd'
 import { useTranslation } from 'react-i18next'
 
-import { batchDeleteUserApi, deleteUserApi, getUserListApi } from '@/apis/user'
+import { batchDeleteRoleApi, deleteRoleApi, getRoleListApi } from '@/apis/role'
 import { BatchDeleteButton, CreateButton, DeleteButton, EditButton, ResetButton, SearchButton } from '@/components/button'
 import { SearchCol, SearchContainer, SearchRow, SearchTableContainer } from '@/components/container'
 import { Permission } from '@/components/permission'
-import { USER } from '@/constants/permissions'
+import { ROLE } from '@/constants/permissions'
 import { useSearchTableContainer } from '@/hooks/useSearchTableContainer'
 import { useTable } from '@/hooks/useTable'
 
@@ -37,22 +37,17 @@ export default function UserList() {
     dataStaleTime: 1000 * 60 * 10, // 数据缓存时间，10 分钟
     pagination: true, // 是否开启分页
     selectable: true, // 是否开启选择
-    listApiFn: getUserListApi, // 获取列表数据接口
-    deleteApiFn: deleteUserApi, // 删除数据接口
-    batchDeleteApiFn: batchDeleteUserApi, // 批量删除数据接口
+    listApiFn: getRoleListApi, // 获取列表数据接口
+    deleteApiFn: deleteRoleApi, // 删除数据接口
+    batchDeleteApiFn: batchDeleteRoleApi, // 批量删除数据接口
     scrollY: tableScrollY, // 表格高度，从 useSearchTableContainer 获取
     initialValues: {
-      username: null,
-      nickName: null,
-      email: null,
-      phone: null,
+      name: null,
+      code: null,
     },
     columns: [
-      { title: t('page.systemUser.username'), dataIndex: 'username' },
-      { title: t('page.systemUser.nickName'), dataIndex: 'nickName' },
-      { title: t('page.systemUser.email'), dataIndex: 'email' },
-      { title: t('page.systemUser.phone'), dataIndex: 'phone' },
-      { title: t('page.systemUser.isFrozen'), dataIndex: 'isFrozen' },
+      { title: t('page.systemRole.name'), dataIndex: 'name' },
+      { title: t('page.systemRole.code'), dataIndex: 'code' },
       {
         title: t('common.actions'),
         key: 'actions',
@@ -60,10 +55,10 @@ export default function UserList() {
         width: 100,
         render: (_, record) => (
           <>
-            <Permission permission={USER.UPDATE}>
+            <Permission permission={ROLE.UPDATE}>
               <EditButton type="text" size="small" noText onClick={() => handleEdit(record)} />
             </Permission>
-            <Permission permission={USER.DELETE}>
+            <Permission permission={ROLE.DELETE}>
               <DeleteButton
                 type="text"
                 size="small"
@@ -94,7 +89,7 @@ export default function UserList() {
               <ResetButton onClick={handleReset} />
             </Space>
             <Divider type="vertical" />
-            <Permission permission={USER.DELETE}>
+            <Permission permission={ROLE.DELETE}>
               <BatchDeleteButton
                 loading={isBatchDeleting}
                 disabled={selectedIsEmpty}
@@ -103,23 +98,17 @@ export default function UserList() {
               />
             </Permission>
             <Divider type="vertical" />
-            <Permission permission={USER.CREATE}>
+            <Permission permission={ROLE.CREATE}>
               <CreateButton onClick={() => handleCreate()} />
             </Permission>
           </>
         )}
       >
         <SearchRow>
-          <SearchCol name="username" label={t('page.systemUser.username')}>
+          <SearchCol name="name" label={t('page.systemRole.name')}>
             <Input />
           </SearchCol>
-          <SearchCol name="nickName" label={t('page.systemUser.nickName')}>
-            <Input />
-          </SearchCol>
-          <SearchCol name="email" label={t('page.systemUser.email')}>
-            <Input />
-          </SearchCol>
-          <SearchCol name="phone" label={t('page.systemUser.phone')}>
+          <SearchCol name="code" label={t('page.systemRole.code')}>
             <Input />
           </SearchCol>
         </SearchRow>

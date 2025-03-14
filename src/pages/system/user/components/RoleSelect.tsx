@@ -26,7 +26,6 @@ export default function RoleSelect({ value, onChange }: RoleSelectProps) {
       options={options}
       mode="multiple"
       allowClear
-      style={{ width: '100%' }}
     />
   )
 }
