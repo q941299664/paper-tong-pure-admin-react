@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import { createContext, useContext, useState } from 'react'
+import { createContext, use, useState } from 'react'
 
 interface TransitionContextType {
   isThemeSwitching: boolean
@@ -33,4 +33,4 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   )
 }
 
-export const useTransitionControl = () => useContext(TransitionContext)
+export const useTransitionControl = () => use(TransitionContext)

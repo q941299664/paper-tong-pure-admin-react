@@ -1,8 +1,7 @@
 import { App as AntdApp } from 'antd'
 import 'virtual:uno.css'
 
-import { TransitionProvider } from '@/contexts'
-import { ThemeProvider } from '@/providers/ThemeProvider'
+import { ThemeProvider, TransitionProvider } from '@/contexts'
 
 import Router from './router'
 
