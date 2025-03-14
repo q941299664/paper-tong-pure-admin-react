@@ -111,7 +111,6 @@ export function useForm<TCreateFn extends (data: any) => Promise<any>>({
     mutationFn: (values: Partial<TModel>) => updateApiFn(Number(id), values),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [listQueryKey] })
-      queryClient.invalidateQueries({ queryKey: [detailQueryKey, id] })
       if (backAfterSuccess)
         handleBack()
     },

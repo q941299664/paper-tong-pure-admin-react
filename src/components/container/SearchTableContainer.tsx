@@ -17,13 +17,15 @@ export default function SearchTableContainer({
 }: SearchTableContainerProps) {
   return (
     <div className="m-2 flex flex-col items-stretch gap-2 overflow-hidden lt-sm:overflow-auto">
-      <Card
-        ref={searchCardRef}
-        size="small"
-        variant="borderless"
-      >
-        {searchForm}
-      </Card>
+      {searchForm && (
+        <Card
+          ref={searchCardRef}
+          size="small"
+          variant="borderless"
+        >
+          {searchForm}
+        </Card>
+      )}
 
       <Card
         style={{ height: `${tableCardHeight}px` }}

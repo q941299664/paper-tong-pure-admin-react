@@ -27,7 +27,7 @@
     "delete": "删除",
     "deleteConfirm": "确定删除吗？",
     "batchDelete": "批量删除",
-    "batchDeleteConfirm": "确认要删除 {count} 条记录吗 ？",
+    "batchDeleteConfirm": "确认要删除 {{count}} 条记录吗 ？",
     "back": "返回",
     "pleaseEnter": "请输入内容..."
   },
@@ -129,7 +129,7 @@
       "action": "操作",
       "noticeTitle": "提示",
       "noticeContent": "此页面为展示，具体增删改查逻辑实现请参考文档或 【系统设置】 模块中相关页面及代码",
-      "param": "参数{count}"
+      "param": "参数{{count}}"
     },
     "tableAutoHeightExample": {
       "name": "姓名",

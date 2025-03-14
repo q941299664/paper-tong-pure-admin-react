@@ -27,7 +27,7 @@
     "delete": "Delete",
     "deleteConfirm": "Are you sure you want to delete?",
     "batchDelete": "Batch Delete",
-    "batchDeleteConfirm": "Are you sure you want to delete {count} records?",
+    "batchDeleteConfirm": "Are you sure you want to delete {{count}} records?",
     "back": "Back",
     "pleaseEnter": "Please enter content..."
   },
@@ -129,7 +129,7 @@
       "action": "Action",
       "noticeTitle": "Notice",
       "noticeContent": "This page is for demonstration, please refer to the documentation or the related pages and code in the 【System Settings】 module for the implementation of the specific logic of adding, deleting, and modifying",
-      "param": "Param {count}"
+      "param": "Param {{count}}"
     },
     "tableAutoHeightExample": {
       "name": "Name",

@@ -1,11 +1,12 @@
 import type { ButtonProps as AntdButtonProps } from 'antd'
-import type { ReactNode } from 'react'
+import type { ReactNode, RefObject } from 'react'
 
 import { Button as AntdButton, Space } from 'antd'
 
 import { Icon } from '@/components/icon'
 
 export interface ButtonProps extends AntdButtonProps {
+  ref?: RefObject<HTMLButtonElement | null>
   icon?: string
   iconPosition?: 'start' | 'end'
   loading?: boolean
@@ -19,6 +20,7 @@ const buttonSpaceSizeMap = {
 }
 
 export default function Button({
+  ref,
   icon,
   iconPosition = 'start',
   size = 'middle',
@@ -47,7 +49,12 @@ export default function Button({
   }
 
   return (
-    <AntdButton size={size} loading={loading} {...props}>
+    <AntdButton
+      ref={ref}
+      size={size}
+      loading={loading}
+      {...props}
+    >
       {renderButtonContent()}
     </AntdButton>
   )

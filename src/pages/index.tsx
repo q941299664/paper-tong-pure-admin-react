@@ -15,7 +15,6 @@ export default function Dashboard() {
       </Card>
 
       <Row gutter={[8, 8]}>
-        {/* 销售柱状图 */}
         <Col xs={24} sm={24} md={14}>
           <Card
             title={t('page.home.sales')}
@@ -44,7 +43,6 @@ export default function Dashboard() {
           </Card>
         </Col>
 
-        {/* 销售分布环形图 */}
         <Col xs={24} sm={24} md={10}>
           <Card
             title={t('page.home.salesDistribution')}
@@ -63,7 +61,6 @@ export default function Dashboard() {
           </Card>
         </Col>
 
-        {/* 客户满意度线图 */}
         <Col span={24}>
           <Card
             title={t('page.home.customerSatisfaction')}
