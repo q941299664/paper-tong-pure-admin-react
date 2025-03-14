@@ -1,4 +1,5 @@
 import type { TableProps } from 'antd'
+import type { FormInstance } from 'antd/es/form'
 import type { Key } from 'react'
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
@@ -83,8 +84,11 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
 }: UseTableOptions<TApiFn>) {
   const { navigateWithData } = usePageTransfer()
 
+  const needsForm = Object.keys(initialValues).length > 0
+
   // 创建form实例
-  const [form] = Form.useForm()
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [form] = needsForm ? Form.useForm() : [null]
 
   const location = useLocation()
   const queryClient = useQueryClient()
@@ -110,7 +114,7 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
   const saveQueryState = () => {
     if (cacheEnabled) {
       const state: QueryState = {
-        params: form.getFieldsValue(),
+        params: form?.getFieldsValue() ?? {},
         page,
         pageSize,
       }
@@ -131,7 +135,7 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
       const initialState = queryClient.getQueryData<QueryState>([stateQueryKey])
 
       if (initialState) {
-        form.setFieldsValue(initialState.params)
+        form?.setFieldsValue(initialState.params)
         setQueryState(initialState.params)
         if (pagination) {
           setPage(initialState.page)
@@ -139,11 +143,11 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
         }
       }
       else {
-        form.setFieldsValue(initialValues)
+        form?.setFieldsValue(initialValues)
       }
     }
     else {
-      form.setFieldsValue(initialValues)
+      form?.setFieldsValue(initialValues)
     }
   }, [cacheEnabled, form, initialValues, pagination, queryClient, stateQueryKey])
 
@@ -196,8 +200,8 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
   // -------------------- Actions --------------------
   const handleSearch = async () => {
     try {
-      const values = await form.validateFields()
-      setQueryState(values)
+      const values = await form?.validateFields()
+      setQueryState(values ?? {})
       if (pagination) {
         setPage(1)
       }
@@ -211,7 +215,7 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
   }
 
   const handleReset = async () => {
-    form.resetFields()
+    form?.resetFields()
     setQueryState(initialValues)
     if (pagination) {
       setPage(1)
@@ -345,7 +349,7 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
 
   return {
     // 表单
-    form,
+    form: form as FormInstance,
 
     // 表格
     tableProps,

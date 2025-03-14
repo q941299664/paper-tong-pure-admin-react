@@ -1,24 +1,25 @@
 import { Divider, Form, Table, Tag } from 'antd'
 import { useTranslation } from 'react-i18next'
 
-import { deleteMenuApi, getMenuTreeApi } from '@/apis/menu'
+import { deleteApiApi, getApiTreeApi } from '@/apis/api'
 import { Button, CreateButton, DeleteButton, EditButton, RefreshButton } from '@/components/button'
 import { SearchContainer, SearchTableContainer } from '@/components/container'
-import { Icon } from '@/components/icon'
 import { Permission } from '@/components/permission'
-import { MENU_TYPE } from '@/constants/menu'
-import { MENU } from '@/constants/permissions'
+import { API_TYPE } from '@/constants/api'
+import { API } from '@/constants/permissions'
 import { useSearchTableContainer } from '@/hooks/useSearchTableContainer'
 import { useTable } from '@/hooks/useTable'
 
-export default function MenuList() {
+export default function ApiList() {
   const { t } = useTranslation()
 
+  // 使用搜索表格容器
   const {
     listContainerProps,
     tableScrollY,
   } = useSearchTableContainer()
 
+  // 使用表格Hook
   const {
     tableProps,
     isLoading,
@@ -28,56 +29,45 @@ export default function MenuList() {
     handleEdit,
     handleDelete,
   } = useTable({
-    key: 'menu', // 表格唯一标识，不要与其他模块重名
+    key: 'api', // 表格唯一标识，不要与其他模块重名
     cacheEnabled: true, // 是否启用缓存
-    dataStaleTime: 1000 * 60 * 10, // 数据缓存时间，10 分钟
+    dataStaleTime: 1000 * 60 * 10, // 数据缓存时间，10分钟
     pagination: false, // 是否开启分页
-    listApiFn: getMenuTreeApi, // 获取列表数据接口
-    deleteApiFn: deleteMenuApi, // 删除数据接口
-    scrollY: tableScrollY, // 表格高度，从 useSearchTableContainer 获取
+    listApiFn: getApiTreeApi, // 获取列表数据接口
+    deleteApiFn: deleteApiApi, // 删除数据接口
+    scrollY: tableScrollY, // 表格高度，从useSearchTableContainer获取
     columns: [
-      { title: t('page.systemMenu.title'), dataIndex: 'title' },
+      { title: t('page.systemApi.title'), dataIndex: 'title' },
       {
-        title: t('page.systemMenu.type'),
+        title: t('page.systemApi.type'),
         dataIndex: 'type',
-        render: (type: MENU_TYPE) => {
-          if (type === MENU_TYPE.DIRECTORY) {
-            return <Tag>{t('page.systemMenu.directory')}</Tag>
-          }
-          else if (type === MENU_TYPE.MENU) {
-            return <Tag color="blue">{t('page.systemMenu.menu')}</Tag>
+        render: (type: API_TYPE) => {
+          if (type === API_TYPE.DIRECTORY) {
+            return <Tag>{t('page.systemApi.directory')}</Tag>
           }
           else {
-            return <Tag color="cyan">{t('page.systemMenu.feature')}</Tag>
+            return <Tag color="blue">{t('page.systemApi.api')}</Tag>
           }
         },
       },
       {
-        title: t('page.systemMenu.icon'),
-        dataIndex: 'icon',
-        render: (icon: string) => icon ? <Icon icon={icon} /> : null,
+        title: t('page.systemApi.method'),
+        dataIndex: 'method',
+        render: (method: string) =>
+          method ? <Tag color="green">{method}</Tag> : null,
       },
-      { title: t('page.systemMenu.path'), dataIndex: 'path' },
-      { title: t('page.systemMenu.code'), dataIndex: 'code' },
-      { title: t('page.systemMenu.sort'), dataIndex: 'sort' },
-      {
-        title: t('page.systemMenu.isShow'),
-        dataIndex: 'isShow',
-        render: (isShow: boolean) => (
-          isShow
-            ? <Tag color="success">{t('page.systemMenu.show')}</Tag>
-            : <Tag color="error">{t('page.systemMenu.hidden')}</Tag>
-        ),
-      },
+      { title: t('page.systemApi.path'), dataIndex: 'path' },
+      { title: t('page.systemApi.code'), dataIndex: 'code' },
+      { title: t('page.systemApi.sort'), dataIndex: 'sort' },
       {
         title: t('common.actions'),
         key: 'actions',
         fixed: 'right',
         width: 150,
-        render: (_, record) => (
+        render: (_, record: any) => (
           <>
-            <Permission permission={MENU.CREATE}>
-              {record.type !== MENU_TYPE.FEATURE && (
+            <Permission permission={API.CREATE}>
+              {record.type === API_TYPE.DIRECTORY && (
                 <Button
                   icon="icon-park-outline:tree-diagram"
                   type="text"
@@ -86,7 +76,7 @@ export default function MenuList() {
                 />
               )}
             </Permission>
-            <Permission permission={MENU.UPDATE}>
+            <Permission permission={API.UPDATE}>
               <EditButton
                 type="text"
                 size="small"
@@ -94,7 +84,7 @@ export default function MenuList() {
                 onClick={() => handleEdit(record, record)}
               />
             </Permission>
-            <Permission permission={MENU.DELETE}>
+            <Permission permission={API.DELETE}>
               {(!record.children || record.children.length === 0) && (
                 <DeleteButton
                   type="text"
@@ -119,7 +109,7 @@ export default function MenuList() {
           <>
             <RefreshButton loading={isLoading} onClick={handleReset} />
             <Divider type="vertical" />
-            <Permission permission={MENU.CREATE}>
+            <Permission permission={API.CREATE}>
               <CreateButton onClick={() => handleCreate({ id: null })} />
             </Permission>
           </>

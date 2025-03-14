@@ -7,7 +7,7 @@ import { Icon } from '@/components/icon'
 const { Option } = Select
 
 interface IconSelectProps {
-  value: string | null
+  value?: string | null
   onChange?: (value: string | null) => void
 }
 
