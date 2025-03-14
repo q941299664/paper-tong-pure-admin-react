@@ -49,7 +49,10 @@ export function usePageTransfer() {
     pageDataStore.setData(dataKey, data)
 
     // 跳转页面
-    navigate(options, navigateOptions)
+    navigate(options, {
+      viewTransition: true,
+      ...navigateOptions,
+    })
   }
 
   /**

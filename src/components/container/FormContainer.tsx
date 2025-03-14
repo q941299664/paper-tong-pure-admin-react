@@ -107,7 +107,8 @@ export default function FormContainer({
         style={{ height: `${cardHeight}px` }}
         styles={{
           body: {
-            padding: 0,
+            paddingLeft: 0,
+            paddingRight: 0,
           },
         }}
         extra={showBack ? <BackButton onClick={handleBack} /> : null}

@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Form } from 'antd'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -80,13 +80,19 @@ export function useForm<TCreateFn extends (data: any) => Promise<any>>({
     queryKey: [detailQueryKey, id],
     queryFn: () => (getApiFn ? getApiFn(Number(id)) : null),
     enabled: isEditMode && !!getApiFn && !!id,
-    select: (data) => {
-      if (data) {
-        // 设置表单值
-        form.setFieldsValue(data)
-      }
-    },
+    // select: (data) => {
+    //   if (data) {
+    //     // 设置表单值
+    //     form.setFieldsValue(data)
+    //   }
+    // },
   })
+
+  useEffect(() => {
+    if (detailData) {
+      form.setFieldsValue(detailData)
+    }
+  }, [detailData, form])
 
   // ---------- 创建和更新操作 ----------
   const createMutation = useMutation({
@@ -144,7 +150,7 @@ export function useForm<TCreateFn extends (data: any) => Promise<any>>({
   // ---------- 表单属性 ----------
   const formProps = useMemo(() => ({
     form,
-    layout: 'horizontal',
+    layout: 'horizontal' as const,
     initialValues: isCreateMode ? initialValues : undefined, // 仅创建模式使用初始值
     labelCol: formLabelCol,
     wrapperCol: formWrapperCol,

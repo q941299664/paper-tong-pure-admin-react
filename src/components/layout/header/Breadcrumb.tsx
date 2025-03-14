@@ -47,7 +47,7 @@ export default function BreadcrumbNav() {
       const title = item.i18nKey ? t(item.i18nKey) : item.title
 
       return {
-        title: item.path && item.path !== location.pathname ? <Link to={item.path}>{title}</Link> : title,
+        title: item.path && item.path !== location.pathname ? <Link to={item.path} viewTransition>{title}</Link> : title,
       }
     })
   }, [flatUserMenus, matchedMenuPath, location.pathname, t])

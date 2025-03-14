@@ -20,7 +20,7 @@ export default function Logo() {
   }), [headerHeight])
 
   function handleClick() {
-    navigate('/')
+    navigate('/', { viewTransition: true })
   }
 
   return (

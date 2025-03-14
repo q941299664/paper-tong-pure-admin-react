@@ -4,13 +4,13 @@
 }
 
 @keyframes slide-from-right {
-  from { transform: translateX(30px); }
+  from { transform: translateX(-30px); }
   to { transform: translateX(0); }
 }
 
 @keyframes slide-to-left {
   from { transform: translateX(0); }
-  to { transform: translateX(-30px); }
+  to { transform: translateX(30px); }
 }
 
 ::view-transition-group(page) {
@@ -20,11 +20,11 @@
 /* 新页面进入 */
 ::view-transition-new(page) {
   animation: 300ms cubic-bezier(0.4, 0, 0.2, 1) both fade-in, 300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
-  animation-delay: 300ms;
+  animation-delay: 400ms;
 }
 
 /* 旧页面退出 */
 ::view-transition-old(page) {
   animation: 300ms cubic-bezier(0.4, 0, 0.2, 1) both fade-in reverse, 300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
-  animation-duration: 600ms;
+  animation-duration: 700ms;
 }

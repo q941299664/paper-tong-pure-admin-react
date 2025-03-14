@@ -1,3 +1,6 @@
+import type { TableProps } from 'antd'
+import type { Key } from 'react'
+
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Form } from 'antd'
 import { useEffect, useMemo, useState } from 'react'
@@ -49,7 +52,7 @@ interface UseTableOptions<TApiFn extends (params: any) => Promise<ApiResponse<an
   pagination?: boolean
   selectable?: boolean
   initialValues?: Record<string, any>
-  columns: React.ReactNode[]
+  columns: TableProps<any>['columns']
   scrollX?: string | number
   scrollY?: number | string
   pageCreatePath?: string
@@ -199,7 +202,7 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
         setPage(1)
       }
       saveQueryState()
-      await refetch()
+      // await refetch()
       setSelectedState([])
     }
     catch (error) {
@@ -298,10 +301,12 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
     ...(selectable
       ? {
           rowSelection: {
-            type: 'checkbox',
+            type: 'checkbox' as const,
             selectedRowKeys: selectedState,
-            onChange: (keys: number[]) => setSelectedState(keys),
-          },
+            onChange: (selectedRowKeys: Key[]) => {
+              setSelectedState(selectedRowKeys.map(key => Number(key)))
+            },
+          } as TableProps<any>['rowSelection'],
         }
       : {}),
     scroll: {
@@ -321,7 +326,7 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
             setSelectedState([])
           },
         }
-      : false,
+      : undefined,
   }), [
     idKey,
     columns,

@@ -1,3 +1,5 @@
+import type { RefObject } from 'react'
+
 import { useMutationObserver, useSize } from 'ahooks'
 import { theme } from 'antd'
 import { useEffect, useMemo, useRef, useState } from 'react'
@@ -7,7 +9,6 @@ import { useShallow } from 'zustand/react/shallow'
 import { useAppStore } from '@/stores'
 
 export function useSearchTableContainer() {
-  // 使用antd的theme token
   const { token } = theme.useToken()
 
   // 获取窗口高度
@@ -21,7 +22,7 @@ export function useSearchTableContainer() {
   )
 
   // 搜索卡片引用和尺寸
-  const searchCardRef = useRef<HTMLDivElement>(null)
+  const searchCardRef = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement>
   const searchCardSize = useSize(searchCardRef)
   const searchCardHeight = searchCardSize?.height || 0
 
@@ -79,7 +80,6 @@ export function useSearchTableContainer() {
     updatePaginationRef()
   }
 
-  // 初始化时更新一次
   useEffect(() => {
     updateTableRef()
   }, [])
@@ -107,7 +107,6 @@ export function useSearchTableContainer() {
   // 返回容器属性
   const listContainerProps = useMemo(() => ({
     searchCardRef,
-    searchCardHeight,
     tableCardHeight,
   }), [searchCardHeight, tableCardHeight])
 

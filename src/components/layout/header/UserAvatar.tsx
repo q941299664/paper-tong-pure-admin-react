@@ -23,7 +23,7 @@ export default function UserDropdown() {
   const handleClick: MenuProps['onClick'] = (e) => {
     switch (e.key) {
       case 'userCenter':
-        navigate('/user-center')
+        navigate('/user-center', { viewTransition: true })
         break
       case 'logout':
         modal.confirm({
