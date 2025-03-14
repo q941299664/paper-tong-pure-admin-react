@@ -15,6 +15,7 @@ interface CountToProps {
   decimal?: string
   useEasing?: boolean
   transition?: Easing | Easing[]
+  className?: string
 }
 
 export default function CountTo({
@@ -29,6 +30,7 @@ export default function CountTo({
   decimal = '.',
   useEasing = true,
   transition = 'linear',
+  className,
 }: CountToProps) {
   // 创建动画值
   const motionValue = useMotionValue(startValue)
@@ -87,5 +89,5 @@ export default function CountTo({
     }
   }, [startValue, endValue, duration, useEasing, transition, autoplay])
 
-  return <span>{value}</span>
+  return <span className={className}>{value}</span>
 }

@@ -3,7 +3,7 @@ import type { MenuProps } from 'antd'
 import { Menu as AntdMenu } from 'antd'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useShallow } from 'zustand/react/shallow'
 
 import { Icon } from '@/components/icon'
@@ -16,6 +16,7 @@ import styles from './Menu.module.scss'
 export default function Menu() {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const location = useLocation()
   const { userMenus, flatUserMenus } = useUserStore(
     useShallow(state => ({
       userMenus: state.userMenus,
@@ -49,7 +50,7 @@ export default function Menu() {
 
   const handleClick: MenuProps['onClick'] = ({ key }) => {
     const selectedItem = flatUserMenus.find(item => item.id.toString() === key)
-    if (selectedItem && selectedItem.path) {
+    if (selectedItem && selectedItem.path && selectedItem.path !== location.pathname) {
       navigate(selectedItem.path, { viewTransition: true })
     }
   }
