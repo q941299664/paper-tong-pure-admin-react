@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import { ConfigProvider } from 'antd'
+import { ConfigProvider, theme } from 'antd'
 import enUS from 'antd/locale/en_US'
 import zhCN from 'antd/locale/zh_CN'
 import { useEffect } from 'react'
@@ -9,10 +9,9 @@ import { useShallow } from 'zustand/react/shallow'
 import { useAppStore } from '@/stores'
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const { isDark, antdTheme, currentLocale } = useAppStore(
+  const { isDark, currentLocale } = useAppStore(
     useShallow(state => ({
       isDark: state.isDark,
-      antdTheme: state.antdTheme,
       currentLocale: state.currentLocale,
     })),
   )
@@ -42,7 +41,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [isDark])
 
   return (
-    <ConfigProvider theme={antdTheme} locale={currentLocale === 'zh-CN' ? zhCN : enUS}>
+    <ConfigProvider theme={{ algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm }} locale={currentLocale === 'zh-CN' ? zhCN : enUS}>
       {children}
     </ConfigProvider>
   )

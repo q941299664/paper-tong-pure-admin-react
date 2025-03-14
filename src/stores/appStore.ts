@@ -1,6 +1,3 @@
-import type { ThemeConfig } from 'antd'
-
-import { theme as antdTheme } from 'antd'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
@@ -22,7 +19,6 @@ interface AppState {
 
   // Theme
   isDark: boolean
-  antdTheme: ThemeConfig
   toggleTheme: () => void
   setTheme: (dark: boolean) => void
 
@@ -54,25 +50,14 @@ export const useAppStore = create<AppState>()(
 
       // Theme
       isDark: getSystemThemePreference(),
-      antdTheme: {
-        algorithm: getSystemThemePreference()
-          ? antdTheme.darkAlgorithm
-          : antdTheme.defaultAlgorithm,
-      },
       toggleTheme: () => set((state) => {
         const newIsDark = !state.isDark
         return {
           isDark: newIsDark,
-          antdTheme: {
-            algorithm: newIsDark ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
-          },
         }
       }),
       setTheme: (dark: boolean) => set({
         isDark: dark,
-        antdTheme: {
-          algorithm: dark ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
-        },
       }),
 
       // Locale
