@@ -58,13 +58,13 @@ export default function ApiForm() {
   ], [t])
 
   // API方法选项
-  const methodOptions = useMemo(() => [
+  const methodOptions = [
     { label: 'GET', value: API_METHOD.GET },
     { label: 'POST', value: API_METHOD.POST },
     { label: 'PUT', value: API_METHOD.PUT },
     { label: 'PATCH', value: API_METHOD.PATCH },
     { label: 'DELETE', value: API_METHOD.DELETE },
-  ], [])
+  ]
 
   // 表单验证规则
   const rules: Record<string, Rule[]> = useMemo(() => {

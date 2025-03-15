@@ -2,7 +2,6 @@ import type { ReactNode } from 'react'
 
 import { Card } from 'antd'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
-import { useMemo } from 'react'
 import { useWindowSize } from 'react-use'
 import { useShallow } from 'zustand/react/shallow'
 
@@ -26,20 +25,13 @@ export default function BaseContainer({ title = '', children }: BaseContainerPro
   const { height: windowHeight } = useWindowSize()
 
   // 计算间距
-  const space = useMemo(() => {
-    const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize)
-    return rootFontSize * 0.5 // gap-2 = 0.5rem
-  }, [])
+  const space = Number.parseFloat(getComputedStyle(document.documentElement).fontSize) * 0.5 // gap-2 = 0.5rem
 
   // 计算卡片高度
-  const cardHeight = useMemo(() => {
-    return windowHeight - headerHeight - space * 2
-  }, [windowHeight, headerHeight, space])
+  const cardHeight = windowHeight - headerHeight - space * 2
 
   // 计算滚动区域高度
-  const overlayScrollbarsHeight = useMemo(() => {
-    return cardHeight - 55
-  }, [cardHeight])
+  const overlayScrollbarsHeight = cardHeight - 55
 
   return (
     <div className="m-2 overflow-hidden">

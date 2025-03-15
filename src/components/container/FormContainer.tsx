@@ -1,6 +1,6 @@
 import { Card } from 'antd'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useWindowSize } from 'react-use'
 import { useShallow } from 'zustand/react/shallow'
@@ -50,20 +50,13 @@ export default function FormContainer({
   const breakpointsName = ['2xl', 'xl', 'lg', 'md', 'sm']
 
   // 计算间距
-  const space = useMemo(() => {
-    const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize)
-    return rootFontSize * 0.5 // gap-2 = 0.5rem
-  }, [])
+  const space = Number.parseFloat(getComputedStyle(document.documentElement).fontSize) * 0.5 // gap-2 = 0.5rem
 
   // 计算卡片高度
-  const cardHeight = useMemo(() => {
-    return windowHeight - headerHeight - space * 2
-  }, [windowHeight, headerHeight, space])
+  const cardHeight = windowHeight - headerHeight - space * 2
 
   // 计算滚动区域高度
-  const overlayScrollbarsHeight = useMemo(() => {
-    return cardHeight - 100
-  }, [cardHeight])
+  const overlayScrollbarsHeight = cardHeight - 100
 
   // 获取最大宽度
   function getMaxWidth() {
@@ -89,12 +82,6 @@ export default function FormContainer({
     setMaxWidth(getMaxWidth())
   }, [breakpoints, sidebarWidth, margin])
 
-  const style = useMemo(() => {
-    return {
-      maxWidth,
-    }
-  }, [maxWidth])
-
   function handleBack() {
     navigate(-1)
   }
@@ -118,7 +105,7 @@ export default function FormContainer({
           defer
           style={{ height: `${overlayScrollbarsHeight}px` }}
         >
-          <div className="mx-auto" style={style}>
+          <div className="mx-auto" style={{ maxWidth }}>
             {children}
           </div>
         </OverlayScrollbarsComponent>

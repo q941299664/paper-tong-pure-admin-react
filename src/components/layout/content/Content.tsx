@@ -2,7 +2,6 @@ import type { ReactNode } from 'react'
 
 import { Layout } from 'antd'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
-import { useMemo } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 
 import { useAppStore } from '@/stores'
@@ -21,13 +20,9 @@ export default function Content({ children }: ScrollableContentProps) {
     })),
   )
 
-  const contentStyle = useMemo(() => ({
-    height: `calc(100vh - ${headerHeight}px)`,
-  }), [headerHeight])
-
   return (
     <AntdContent
-      style={contentStyle}
+      style={{ height: `calc(100vh - ${headerHeight}px)` }}
       className="bg-theme-content dark:bg-theme-content-dark"
     >
       <OverlayScrollbarsComponent

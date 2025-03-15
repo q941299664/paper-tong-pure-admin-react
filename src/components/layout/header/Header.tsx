@@ -1,5 +1,4 @@
 import { Layout } from 'antd'
-import { useMemo } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 
 import { LangSelect, ThemeToggle } from '@/components/common'
@@ -19,12 +18,11 @@ export default function Header() {
     })),
   )
 
-  // 使用useMemo替代Vue的computed
-  const style = useMemo(() => ({
+  const style = {
     height: `${headerHeight}px`,
     lineHeight: `${headerHeight}px`,
     paddingInline: 0,
-  }), [headerHeight])
+  }
 
   return (
     <AntdHeader style={style}>

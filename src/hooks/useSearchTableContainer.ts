@@ -27,15 +27,11 @@ export function useSearchTableContainer() {
   const searchCardHeight = searchCardSize?.height || 0
 
   // 计算间距
-  const space = useMemo(() => {
-    const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize)
-    return rootFontSize * 0.5 // gap-2 = 0.5rem
-  }, [])
+
+  const space = Number.parseFloat(getComputedStyle(document.documentElement).fontSize) * 0.5 // gap-2 = 0.5rem
 
   // 计算表格卡片高度
-  const tableCardHeight = useMemo(() => {
-    return windowHeight - headerHeight - searchCardHeight - space * 3
-  }, [windowHeight, headerHeight, searchCardHeight, space])
+  const tableCardHeight = windowHeight - headerHeight - searchCardHeight - space * 3
 
   // 表格头部引用和尺寸
   const [theadRef, setTheadRef] = useState<HTMLDivElement | null>(null)

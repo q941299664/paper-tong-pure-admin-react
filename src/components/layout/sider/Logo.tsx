@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useShallow } from 'zustand/react/shallow'
 
@@ -15,9 +14,9 @@ export default function Logo() {
     })),
   )
 
-  const logoStyle = useMemo(() => ({
+  const logoStyle = {
     height: `${headerHeight}px`,
-  }), [headerHeight])
+  }
 
   function handleClick() {
     console.log(location.pathname)

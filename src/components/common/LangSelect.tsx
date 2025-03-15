@@ -1,7 +1,6 @@
 import type { MenuProps } from 'antd'
 
 import { Button, Dropdown, Menu } from 'antd'
-import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useShallow } from 'zustand/react/shallow'
 
@@ -19,13 +18,10 @@ export default function LangSelect() {
     })),
   )
 
-  const selectedKeys = useMemo(() => [currentLocale], [currentLocale])
-
-  const menuItems = useMemo(() =>
-    Object.entries(LOCALES).map(([key, value]) => ({
-      key,
-      label: value.label,
-    })), [])
+  const menuItems = Object.entries(LOCALES).map(([key, value]) => ({
+    key,
+    label: value.label,
+  }))
 
   const handleClick: MenuProps['onClick'] = (e) => {
     const key = String(e.key)
@@ -37,7 +33,7 @@ export default function LangSelect() {
     <Dropdown
       dropdownRender={() => (
         <Menu
-          selectedKeys={selectedKeys}
+          selectedKeys={[currentLocale]}
           items={menuItems}
           onClick={handleClick}
         />
@@ -58,4 +54,4 @@ export default function LangSelect() {
       </div>
     </Dropdown>
   )
-};
+}
