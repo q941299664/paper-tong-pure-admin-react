@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useShallow } from 'zustand/react/shallow'
 
 import { Icon } from '@/components/icon'
@@ -7,7 +7,7 @@ import { useAppStore } from '@/stores'
 
 export default function Logo() {
   const navigate = useNavigate()
-
+  const location = useLocation()
   const { headerHeight, sidebarCollapsed } = useAppStore(
     useShallow(state => ({
       headerHeight: state.headerHeight,
@@ -20,7 +20,10 @@ export default function Logo() {
   }), [headerHeight])
 
   function handleClick() {
-    navigate('/', { viewTransition: true })
+    console.log(location.pathname)
+    if (location.pathname !== '/') {
+      navigate('/', { viewTransition: true })
+    }
   }
 
   return (
