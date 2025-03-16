@@ -55,7 +55,7 @@ export default function DataTableExample() {
     listApiFn: getListApi,
     scrollY: tableScrollY,
     selectable: true,
-    initialValues: {
+    formInitialValues: {
       param1: null,
       param2: null,
       param3: null,

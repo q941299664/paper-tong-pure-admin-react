@@ -1,54 +1,51 @@
-# React + TypeScript + Vite
+<div align="center">
+  <h1>Pure Admin Vue</h1>
+  <span>中文 | <a href="./README.en_US.md">English</a></span>
+</div>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+[![license](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 简介
 
-## Expanding the ESLint configuration
+`Pure Admin` 是一款简洁优雅、功能强大且专注于用户体验的后台管理系统。 前端同时支持 `React 19` / `Vue 3` 双版本，让您可灵活选择开发技术栈，后端使用 `NestJS 11` 开发。点击 [文档]() 了解更多相关内容。
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**本项目为前端 `React 19` 版本实现。**
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 特点
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- 使用最新技术栈（React 19、Vue 3、NestJS 11、Prisma 6 等）。
+- 使用 TypeScript 进行开发，支持严格的类型检查，提高代码的可维护性。
+- 内置丰富业务组件，包括布局、图表、列表增删改查等，提高开发效率。
+- 漂亮的 UI 设计、极致的用户体验和细节处理。
+- 前端基于文件的路由系统。
+- 基于装饰器的后端缓存系统，简单好用的。
+- 前后端均内置国际化方案，实现多语言支持。
+- 前后端打通的权限系统。
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 版本
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- **前端 `React` 版本:**
+
+  - [文档地址](/pure-admin-react/quick-start)
+  - [预览地址](https://github.com/sunhaoxiang)
+  - [Github 仓库](https://github.com/sunhaoxiang/pure-admin-react)
+
+- **前端 `Vue` 版本:**
+
+  - [文档地址](/pure-admin-vue/quick-start)
+  - [预览地址](https://github.com/sunhaoxiang)
+  - [Github 仓库](https://github.com/sunhaoxiang/pure-admin-vue)
+
+- **后端 `NestJS` 版本:**
+
+  - [文档地址](/pure-admin-nestjs/quick-start)
+  - [Github 仓库](https://github.com/sunhaoxiang/pure-admin-nestjs)
+
+## 技术栈
+- **Pure Admin React**：React 19、Vite、Ant Design、@tanstack/react-query、Unocss 等。
+- **Pure Admin Vue**：Vue 3、Vite、Ant Design Vue、@tanstack/vue-query、Unocss 等。
+- **Pure Admin NestJS**：NestJS 11、Prisma 6、PostgreSQL、Redis 等。
+
+## 示例图片

@@ -41,7 +41,7 @@ export default function UserList() {
     deleteApiFn: deleteUserApi, // 删除数据接口
     batchDeleteApiFn: batchDeleteUserApi, // 批量删除数据接口
     scrollY: tableScrollY, // 表格高度，从 useSearchTableContainer 获取
-    initialValues: {
+    formInitialValues: {
       username: null,
       nickName: null,
       email: null,
