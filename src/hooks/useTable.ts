@@ -52,7 +52,7 @@ interface UseTableOptions<TApiFn extends (params: any) => Promise<ApiResponse<an
   dataStaleTime?: number
   pagination?: boolean
   selectable?: boolean
-  initialValues?: Record<string, any>
+  formInitialValues?: Record<string, any>
   columns: TableProps<any>['columns']
   scrollX?: string | number
   scrollY?: number | string
@@ -75,7 +75,7 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
   dataStaleTime = 1000 * 60 * 10, // 默认 10 分钟
   pagination = true,
   selectable = false,
-  initialValues = {},
+  formInitialValues = {},
   columns,
   scrollX = '100%',
   scrollY,
@@ -84,7 +84,7 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
 }: UseTableOptions<TApiFn>) {
   const { navigateWithData } = usePageTransfer()
 
-  const needsForm = Object.keys(initialValues).length > 0
+  const needsForm = Object.keys(formInitialValues).length > 0
 
   // 创建form实例
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -99,7 +99,7 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
   const [pageSize, setPageSize] = useState(10)
 
   // 查询状态
-  const [queryState, setQueryState] = useState<Record<string, any>>(initialValues)
+  const [queryState, setQueryState] = useState<Record<string, any>>(formInitialValues)
 
   // 选择状态
   const [selectedState, setSelectedState] = useState<number[]>([])
@@ -143,13 +143,13 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
         }
       }
       else {
-        form?.setFieldsValue(initialValues)
+        form?.setFieldsValue(formInitialValues)
       }
     }
     else {
-      form?.setFieldsValue(initialValues)
+      form?.setFieldsValue(formInitialValues)
     }
-  }, [cacheEnabled, form, initialValues, pagination, queryClient, stateQueryKey])
+  }, [cacheEnabled, form, formInitialValues, pagination, queryClient, stateQueryKey])
 
   // -------------------- Query & Data Fetching --------------------
   const {
@@ -216,7 +216,7 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
 
   const handleReset = async () => {
     form?.resetFields()
-    setQueryState(initialValues)
+    setQueryState(formInitialValues)
     if (pagination) {
       setPage(1)
       setPageSize(10)
