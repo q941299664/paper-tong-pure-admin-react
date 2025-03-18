@@ -110,18 +110,6 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
   const stateQueryKey = `${key}-list-state`
 
   // -------------------- Cache Management --------------------
-  // 保存查询状态
-  const saveQueryState = () => {
-    if (cacheEnabled) {
-      const state: QueryState = {
-        params: { ...form?.getFieldsValue() },
-        page,
-        pageSize,
-      }
-      queryClient.setQueryData([stateQueryKey], state)
-    }
-  }
-
   // 清除保存的查询状态
   const clearSavedState = () => {
     if (cacheEnabled) {
@@ -198,11 +186,18 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
   const handleSearch = async () => {
     try {
       const values = await form?.validateFields()
-      setQueryState(values ?? {})
+      // 直接使用新的值保存状态
+      if (cacheEnabled) {
+        const state: QueryState = {
+          params: values,
+          page: 1, // 直接使用新的页码
+          pageSize: 10, // 直接使用新的每页条数
+        }
+        queryClient.setQueryData([stateQueryKey], state)
+      }
       if (pagination) {
         setPage(1)
       }
-      saveQueryState()
       setSelectedState([])
     }
     catch (error) {
