@@ -4,7 +4,7 @@ import type { Key } from 'react'
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Form } from 'antd'
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { usePageTransfer } from '@/hooks/usePageTransfer'
@@ -114,7 +114,7 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
   const saveQueryState = () => {
     if (cacheEnabled) {
       const state: QueryState = {
-        params: form?.getFieldsValue() ?? {},
+        params: { ...form?.getFieldsValue() },
         page,
         pageSize,
       }
@@ -159,23 +159,20 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
   } = useQuery({
     queryKey: [listQueryKey, queryState, page, pageSize],
     queryFn: async () => {
-      // 如果没有查询参数，直接调用
-      if (Object.keys(queryState).length === 0) {
-        return await listApiFn({})
-      }
+      // 创建基础参数对象
+      const baseParams = { ...queryState }
 
-      // 有查询参数并且分页
+      // 如果启用分页，添加分页参数
       if (pagination) {
-        const params = {
-          ...queryState,
+        return await listApiFn({
+          ...baseParams,
           page,
           pageSize,
-        }
-        return await listApiFn(params)
+        })
       }
 
-      // 有查询参数但不分页
-      return await listApiFn(queryState)
+      // 不分页的情况
+      return await listApiFn(baseParams)
     },
     staleTime: cacheEnabled ? dataStaleTime : 0,
     gcTime: cacheEnabled ? dataStaleTime : 0,
@@ -206,7 +203,6 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
         setPage(1)
       }
       saveQueryState()
-      // await refetch()
       setSelectedState([])
     }
     catch (error) {
@@ -222,7 +218,6 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
       setPageSize(10)
     }
     saveQueryState()
-    await refetch()
     setSelectedState([])
   }
 
@@ -295,6 +290,22 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
     return isPageResponse(data) ? data.total : data.length
   }, [data])
 
+  const handlePageChange = useCallback((newPage: number, newPageSize: number) => {
+    setPage(newPage)
+    setPageSize(newPageSize)
+
+    if (cacheEnabled) {
+      const state: QueryState = {
+        params: { ...form?.getFieldsValue() },
+        page: newPage,
+        pageSize: newPageSize,
+      }
+      queryClient.setQueryData([stateQueryKey], state)
+    }
+
+    setSelectedState([])
+  }, [cacheEnabled, form, queryClient, stateQueryKey])
+
   // -------------------- Table Props --------------------
   const tableProps = useMemo(() => ({
     rowKey: idKey,
@@ -322,15 +333,9 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
           current: page,
           pageSize,
           total,
-          onChange: async (newPage: number, newPageSize: number) => {
-            setPage(newPage)
-            setPageSize(newPageSize)
-            saveQueryState()
-            await refetch()
-            setSelectedState([])
-          },
+          onChange: handlePageChange,
         }
-      : undefined,
+      : false as const,
   }), [
     idKey,
     columns,

@@ -32,7 +32,7 @@ export default function UserList() {
     selectedCount,
     selectedIsEmpty,
   } = useTable({
-    key: 'user', // 表格唯一标识，不要与其他模块重名
+    key: 'role', // 表格唯一标识，不要与其他模块重名
     cacheEnabled: true, // 是否启用缓存
     dataStaleTime: 1000 * 60 * 10, // 数据缓存时间，10 分钟
     pagination: true, // 是否开启分页
