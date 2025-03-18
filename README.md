@@ -49,3 +49,8 @@
 - **Pure Admin NestJS**：NestJS 11、Prisma 6、PostgreSQL、Redis 等。
 
 ## 示例图片
+
+![light](https://p.ipic.vip/wbw4rc.png)
+![light](https://p.ipic.vip/wtvurq.png)
+![light](https://p.ipic.vip/ahfuw3.png)
+![light](https://p.ipic.vip/417pqw.png)
