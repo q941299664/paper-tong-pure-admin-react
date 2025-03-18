@@ -1,4 +1,4 @@
-import { Divider, Form, Input, Space, Table } from 'antd'
+import { Divider, Form, Input, Space, Table, Tag } from 'antd'
 import { useTranslation } from 'react-i18next'
 
 import { batchDeleteUserApi, deleteUserApi, getUserListApi } from '@/apis/user'
@@ -52,7 +52,11 @@ export default function UserList() {
       { title: t('page.systemUser.nickName'), dataIndex: 'nickName' },
       { title: t('page.systemUser.email'), dataIndex: 'email' },
       { title: t('page.systemUser.phone'), dataIndex: 'phone' },
-      { title: t('page.systemUser.isFrozen'), dataIndex: 'isFrozen' },
+      {
+        title: t('page.systemUser.isFrozen'),
+        dataIndex: 'isFrozen',
+        render: (_, record) => record.isFrozen ? <Tag color="red">{t('page.systemUser.frozen')}</Tag> : <Tag color="green">{t('page.systemUser.unfrozen')}</Tag>,
+      },
       {
         title: t('common.actions'),
         key: 'actions',

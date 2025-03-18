@@ -214,7 +214,9 @@
       "nickName": "昵称",
       "email": "邮箱",
       "phone": "手机号",
-      "isFrozen": "状态",
+      "isFrozen": "是否冻结",
+      "frozen": "冻结",
+      "unfrozen": "未冻结",
       "roles": "角色",
       "password": "密码",
       "rules": {
