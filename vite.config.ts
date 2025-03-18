@@ -1,8 +1,8 @@
 import react from '@vitejs/plugin-react'
-import { dirname, resolve } from 'node:path'
 import { fileURLToPath, URL } from 'node:url'
 import UnoCSS from 'unocss/vite'
 import { defineConfig, loadEnv } from 'vite'
+import viteCompression from 'vite-plugin-compression'
 import Pages from 'vite-plugin-pages'
 
 import { svgToIconify } from './vite-plugins'
@@ -20,21 +20,24 @@ export default defineConfig(({ mode }) => {
     server: {
       port: Number.parseInt(VITE_PORT),
     },
+    build: {
+      chunkSizeWarningLimit: 1000,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            react: ['react', 'react-dom', 'react-router-dom', 'zustand'],
+            antd: ['antd'],
+            echarts: ['echarts'],
+          },
+          chunkFileNames: 'assets/js/[name]-[hash].js',
+          entryFileNames: 'assets/js/[name]-[hash].js',
+          assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
+        },
+      },
+    },
     plugins: [
       Pages({
         exclude: ['**/component{,s}/**'],
-        // extendRoute(route) {
-        //   const meta = getRouteMeta(route.path)
-
-        //   if (meta) {
-        //     return {
-        //       ...route,
-        //       meta,
-        //     }
-        //   }
-
-        //   return route
-        // },
       }),
       react(),
       UnoCSS(),
@@ -42,6 +45,14 @@ export default defineConfig(({ mode }) => {
         svgDir: fileURLToPath(new URL('./src/assets/svg-icon', import.meta.url)),
         prefix: 'icon-local',
         dts: fileURLToPath(new URL('./types/virtual-local-icons.d.ts', import.meta.url)),
+      }),
+      viteCompression({
+        verbose: true, // 是否在控制台输出压缩结果
+        disable: false, // 是否禁用
+        threshold: 1024, // 体积大于阈值会被压缩，单位为 b，默认为 1kb
+        algorithm: 'gzip', // 压缩算法，可选 ['gzip','brotliCompress','deflate','deflateRaw']
+        ext: '.gz', // 生成的压缩包后缀
+        deleteOriginFile: false, // 是否删除原文件，默认为 false
       }),
     ],
     resolve: {
