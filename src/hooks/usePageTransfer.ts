@@ -2,7 +2,7 @@ import type { NavigateOptions, To } from 'react-router-dom'
 
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { usePageDataStore } from '@/stores'
+import { usePageDataStore } from '@/stores/pageDataStore'
 
 // 路由参数类型
 type RouteOptions = To

@@ -4,7 +4,7 @@ import { useDebounceFn, useSize } from 'ahooks'
 import * as echarts from 'echarts/core'
 import { useEffect, useRef, useState } from 'react'
 
-import { useAppStore } from '@/stores'
+import { useAppStore } from '@/stores/appStore'
 
 export function useEcharts(initOptions?: EChartsOption) {
   const { isDark } = useAppStore()

@@ -3,7 +3,7 @@ import 'overlayscrollbars/overlayscrollbars.css'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
 import { useShallow } from 'zustand/react/shallow'
 
-import { useAppStore } from '@/stores'
+import { useAppStore } from '@/stores/appStore'
 import { scrollbarOptions } from '@/utils/overlayscrollbars'
 
 import Logo from './Logo'

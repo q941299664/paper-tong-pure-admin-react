@@ -6,7 +6,7 @@ import zhCN from 'antd/locale/zh_CN'
 import { useEffect } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 
-import { useAppStore } from '@/stores'
+import { useAppStore } from '@/stores/appStore'
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const { isDark, currentLocale } = useAppStore(

@@ -4,7 +4,7 @@ import { initReactI18next } from 'react-i18next'
 import { DEFAULT_LOCALE } from '@/constants/app'
 import enUS from '@/locales/langs/en-US.json'
 import zhCN from '@/locales/langs/zh-CN.json'
-import { useAppStore } from '@/stores'
+import { useAppStore } from '@/stores/appStore'
 
 const { currentLocale } = useAppStore.getState()
 

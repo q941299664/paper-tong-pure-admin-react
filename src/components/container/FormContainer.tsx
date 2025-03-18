@@ -6,7 +6,7 @@ import { useWindowSize } from 'react-use'
 import { useShallow } from 'zustand/react/shallow'
 
 import { BackButton } from '@/components/button'
-import { useAppStore } from '@/stores'
+import { useAppStore } from '@/stores/appStore'
 import { scrollbarOptions } from '@/utils/overlayscrollbars'
 
 interface FormContainerProps {

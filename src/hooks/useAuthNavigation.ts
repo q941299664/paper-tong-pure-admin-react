@@ -4,7 +4,7 @@ import { useShallow } from 'zustand/react/shallow'
 
 import type { LoginInfo } from '@/types/user'
 
-import { useUserStore } from '@/stores'
+import { useUserStore } from '@/stores/userStore'
 
 export function useAuthNavigation() {
   const navigate = useNavigate()

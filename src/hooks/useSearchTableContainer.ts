@@ -6,7 +6,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useWindowSize } from 'react-use'
 import { useShallow } from 'zustand/react/shallow'
 
-import { useAppStore } from '@/stores'
+import { useAppStore } from '@/stores/appStore'
 
 export function useSearchTableContainer() {
   const { token } = theme.useToken()

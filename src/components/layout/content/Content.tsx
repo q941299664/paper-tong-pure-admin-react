@@ -4,7 +4,7 @@ import { Layout } from 'antd'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
 import { useShallow } from 'zustand/react/shallow'
 
-import { useAppStore } from '@/stores'
+import { useAppStore } from '@/stores/appStore'
 import { scrollbarOptions } from '@/utils/overlayscrollbars'
 
 const { Content: AntdContent } = Layout

@@ -5,7 +5,8 @@ import Axios from 'axios'
 import i18n from 'i18next'
 
 import { refreshTokenApi } from '@/apis/user'
-import { useAppStore, useUserStore } from '@/stores'
+import { useAppStore } from '@/stores/appStore'
+import { useUserStore } from '@/stores/userStore'
 
 export const request = Axios.create({
   baseURL: import.meta.env.VITE_API_BASEURL,

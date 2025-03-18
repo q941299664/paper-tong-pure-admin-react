@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useShallow } from 'zustand/react/shallow'
 
 import { Icon } from '@/components/icon'
-import { useAppStore } from '@/stores'
+import { useAppStore } from '@/stores/appStore'
 
 export default function Logo() {
   const navigate = useNavigate()

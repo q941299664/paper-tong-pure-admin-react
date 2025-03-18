@@ -3,7 +3,7 @@ import { flushSync } from 'react-dom'
 import { useShallow } from 'zustand/react/shallow'
 
 import { useTransitionControl } from '@/contexts'
-import { useAppStore } from '@/stores'
+import { useAppStore } from '@/stores/appStore'
 
 const isBrowser = typeof window !== 'undefined'
 

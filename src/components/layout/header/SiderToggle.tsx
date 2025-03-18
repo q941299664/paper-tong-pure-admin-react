@@ -2,7 +2,7 @@ import { Button } from 'antd'
 import { useShallow } from 'zustand/react/shallow'
 
 import { Icon } from '@/components/icon'
-import { useAppStore } from '@/stores'
+import { useAppStore } from '@/stores/appStore'
 
 export default function SidebarToggle() {
   const { sidebarCollapsed, toggleSidebarCollapsed } = useAppStore(

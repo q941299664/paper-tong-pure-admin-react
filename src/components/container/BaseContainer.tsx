@@ -5,7 +5,7 @@ import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
 import { useWindowSize } from 'react-use'
 import { useShallow } from 'zustand/react/shallow'
 
-import { useAppStore } from '@/stores'
+import { useAppStore } from '@/stores/appStore'
 import { scrollbarOptions } from '@/utils/overlayscrollbars'
 
 interface BaseContainerProps {

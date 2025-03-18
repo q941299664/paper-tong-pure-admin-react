@@ -2,7 +2,7 @@ import { Layout } from 'antd'
 import { useShallow } from 'zustand/react/shallow'
 
 import { LangSelect, ThemeToggle } from '@/components/common'
-import { useAppStore } from '@/stores'
+import { useAppStore } from '@/stores/appStore'
 
 import Breadcrumb from './Breadcrumb'
 import SiderToggle from './SiderToggle'
