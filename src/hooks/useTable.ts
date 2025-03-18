@@ -213,11 +213,21 @@ export function useTable<TApiFn extends (params: any) => Promise<ApiResponse<any
   const handleReset = async () => {
     form?.resetFields()
     setQueryState(formInitialValues)
+
+    // 直接使用新的值保存状态
+    if (cacheEnabled) {
+      const state: QueryState = {
+        params: formInitialValues,
+        page: 1, // 直接使用新的页码
+        pageSize: 10, // 直接使用新的每页条数
+      }
+      queryClient.setQueryData([stateQueryKey], state)
+    }
+
     if (pagination) {
       setPage(1)
       setPageSize(10)
     }
-    saveQueryState()
     setSelectedState([])
   }
 
