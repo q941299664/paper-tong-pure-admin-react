@@ -10,6 +10,7 @@ import { Icon } from '@/components/icon'
 import { useAuthNavigation } from '@/hooks/useAuthNavigation'
 import { useUserStore } from '@/stores/userStore'
 import { mapTree } from '@/utils/array'
+import { isHttpUrl } from '@/utils/string'
 
 import styles from './Menu.module.scss'
 
@@ -51,7 +52,12 @@ export default function Menu() {
   const handleClick: MenuProps['onClick'] = ({ key }) => {
     const selectedItem = flatUserMenus.find(item => item.id.toString() === key)
     if (selectedItem && selectedItem.path && selectedItem.path !== location.pathname) {
-      navigate(selectedItem.path, { viewTransition: true })
+      if (isHttpUrl(selectedItem.path)) {
+        window.open(selectedItem.path, '_blank')
+      }
+      else {
+        navigate(selectedItem.path, { viewTransition: true })
+      }
     }
   }
 

@@ -48,6 +48,7 @@
   },
   "menu": {
     "home": "Home",
+    "document": "Document",
     "example": "Example",
     "richTextExample": "Rich Text",
     "dataTableExample": "Data Table",

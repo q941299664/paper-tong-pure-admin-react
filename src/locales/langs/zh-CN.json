@@ -48,6 +48,7 @@
   },
   "menu": {
     "home": "首页",
+    "document": "文档",
     "example": "组件示例",
     "richTextExample": "富文本编辑器",
     "dataTableExample": "数据表格",
