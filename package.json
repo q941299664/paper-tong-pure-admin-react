@@ -3,6 +3,8 @@
   "type": "module",
   "version": "1.0.0",
   "private": true,
+  "description": "A concise, elegant, powerful and user experience focused background management system",
+  "author": "sunhaoxiang",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
