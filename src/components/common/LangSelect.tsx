@@ -31,7 +31,7 @@ export default function LangSelect() {
 
   return (
     <Dropdown
-      dropdownRender={() => (
+      popupRender={() => (
         <Menu
           selectedKeys={[currentLocale]}
           items={menuItems}
