@@ -1,6 +1,8 @@
 import type { BasePageParams } from '@/types/base'
 import type { MenuTree } from '@/types/menu'
 
+import type { BaseEntity } from '.'
+
 export interface LoginInfo {
   username: string
   password: string
@@ -11,8 +13,7 @@ export interface AuthTokens {
   refreshToken: string
 }
 
-export interface UserInfo {
-  id: number
+export interface UserInfo extends BaseEntity {
   username: string
   nickName: string
   headPic: string
@@ -21,8 +22,7 @@ export interface UserInfo {
   featurePermissions: string[]
 }
 
-export interface User {
-  id: number
+export interface User extends BaseEntity {
   username: string | null
   password?: string | null
   nickName?: string | null
@@ -30,8 +30,6 @@ export interface User {
   phone?: string | null
   headPic?: string | null
   isFrozen: boolean
-  createTime?: string | null
-  updateTime?: string | null
   roles?: string[]
 }
 
