@@ -58,6 +58,9 @@
     "pageTransferExample": "跨页面数据传输",
     "chartExample": "图表",
     "countToExample": "数字滚动",
+    "paperFormat": "论文排版",
+    "paperUploadPaperFormat": "论文上传",
+    "paperStatusPaperFormat": "论文状态",
     "themeSwitchExample": "主题切换动画",
     "exception": "异常页",
     "exception403": "403",
@@ -83,6 +86,12 @@
       "rememberMe": "记住我",
       "forgotPassword": "忘记密码？",
       "login": "登录"
+    },
+    "paperUpload": {
+      "title": "论文上传"
+    },
+    "paperStatus": {
+      "title": "论文进度"
     },
     "userCenter": {
       "oldPassword": "旧密码",
